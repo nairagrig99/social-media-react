@@ -1,0 +1,24 @@
+{
+  "sign-in": [
+    {
+      "id": "5025",
+      "email": "nairagrig99@gmail.com",
+      "password": "Naira+093045939@"
+    }
+  ],
+  "sign-up": [
+    {
+      "id": "4219",
+      "first_name": "Naira",
+      "last_name": "Grigoryan",
+      "email": "nairagrig99@gmail.com",
+      "phone": "+37493045939",
+      "password": "Naira+093045939@",
+      "re_password": "Naira+093045939@",
+      "gender": "Female",
+      "birthOfDate": "1999",
+      "country": "Armenia",
+      "city": "Ijevan"
+    }
+  ]
+}
