@@ -1,7 +1,7 @@
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import {Link, useSubmit} from "react-router-dom";
-import {BUTTON_CLASS, INPUT_CLASS, SIGN_IN_MAIN_CLASS} from "../constants/style.enums";
+import {BUTTON_CLASS, INPUT_BLOCK_CLASS, INPUT_CLASS, SIGN_IN_MAIN_CLASS} from "../constants/style.enums";
 import Select from "../UI/Select";
 import {useEffect, useState} from "react";
 import {Country} from "../Interface/select-interface";
@@ -67,7 +67,6 @@ export default function SignUp() {
     const handleCity = (selectedCity: string) => {
         handleChange('city', selectedCity)
     }
-
     const availableAgeList = () => {
         const currentYear = new Date().getFullYear();
 
@@ -80,11 +79,11 @@ export default function SignUp() {
 
     return <div>
         <form className={SIGN_IN_MAIN_CLASS}>
-
             <Input name="first_name"
                    className={INPUT_CLASS}
                    errors={errors.first_name}
                    value={form.first_name}
+                   blockClass={INPUT_BLOCK_CLASS}
                    onChange={(event: any) => handleChange('first_name', event.target.value)}
                    placeholder="First Name"/>
 
@@ -92,6 +91,7 @@ export default function SignUp() {
                    className={INPUT_CLASS}
                    errors={errors.last_name}
                    value={form.last_name}
+                   blockClass={INPUT_BLOCK_CLASS}
                    onChange={(event: any) => handleChange('last_name', event.target.value)}
                    placeholder="Last Name"/>
 
@@ -99,6 +99,7 @@ export default function SignUp() {
                    className={INPUT_CLASS}
                    errors={errors.email}
                    value={form.email}
+                   blockClass={INPUT_BLOCK_CLASS}
                    onChange={(event: any) => handleChange('email', event.target.value)}
                    placeholder="Email"/>
 
@@ -107,6 +108,7 @@ export default function SignUp() {
                    className={INPUT_CLASS}
                    errors={errors.phone}
                    value={form.phone}
+                   blockClass={INPUT_BLOCK_CLASS}
                    onChange={(event: any) => handleChange('phone', event.target.value)}
                    placeholder="Phone Number"/>
 
@@ -115,6 +117,7 @@ export default function SignUp() {
                    value={form.password}
                    errors={errors.password}
                    className={INPUT_CLASS}
+                   blockClass={INPUT_BLOCK_CLASS}
                    onChange={(event: any) => handleChange('password', event.target.value)}
                    placeholder="Password"/>
 
@@ -122,6 +125,7 @@ export default function SignUp() {
                    type="password"
                    errors={errors.re_password}
                    className={INPUT_CLASS}
+                   blockClass={INPUT_BLOCK_CLASS}
                    onChange={(event: any) => handleChange('re_password', event.target.value)}
                    value={form.re_password}
                    placeholder="Re-Password"/>
@@ -132,6 +136,7 @@ export default function SignUp() {
                        label="Male"
                        name="gender"
                        value="Male"
+                       blockClass={INPUT_BLOCK_CLASS}
                        onChange={(event) => handleChange('gender', 'Male')}
                        labelClass="flex gap-1.5"/>
 
@@ -140,6 +145,7 @@ export default function SignUp() {
                        label="Female"
                        name="gender"
                        value="Female"
+                       blockClass={INPUT_BLOCK_CLASS}
                        onChange={(event) => handleChange('gender', 'Female')}
                        labelClass="flex gap-1.5"/>
             </div>

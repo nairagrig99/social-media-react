@@ -41,11 +41,9 @@ export function useFormValidation(initialValues: FormValues) {
         } else {
             const response = await fetch('http://localhost:3000/sign-up')
             const result = await response.json();
-            console.log('result', result);
-            console.log('Object.values(result)', Object.values(result))
+
             const isEmailExist = result.find((data: FormValues) => data.email === values.email)
             if (isEmailExist) {
-                console.log('hereeeee');
                 newErrors.email = 'Email is already exist, attempt another'
             }
         }
@@ -67,7 +65,6 @@ export function useFormValidation(initialValues: FormValues) {
 
 
         setErrors(newErrors);
-        console.log('newErrors', Object.keys(newErrors).length === 0)
         return Object.keys(newErrors).length === 0;
     };
 

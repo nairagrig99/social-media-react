@@ -7,6 +7,7 @@ export interface InputPropsInterface {
     label?:string,
     type?: string,
     name:string,
+    blockClass?:string,
     className?: string,
     placeholder?: string,
     disabled?: boolean,

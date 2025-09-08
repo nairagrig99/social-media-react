@@ -7,6 +7,10 @@ import RootLayout from "./pages/RootLayout";
 import AuthenticationPage from "./pages/AuthenticationPage";
 import ErrorPage from "./pages/ErrorPage";
 import AccountPage from "./pages/AccountPage";
+import ProtectedRoute from "./pages/ProtectedRoute";
+import UserFeed from "./pages/UserFeed";
+import {Provider} from "react-redux";
+import store from "./Store/store";
 
 const router = createBrowserRouter([
     {
@@ -41,12 +45,22 @@ const router = createBrowserRouter([
         element: <Navigate to="/auth" replace/>
     }, {
         path: '/profile',
-        element: <AccountPage/>
+        element: (
+            <ProtectedRoute>
+                <AccountPage/>
+            </ProtectedRoute>
+        ),
+        children: [
+            {path: 'feed', element: <UserFeed/>}
+        ]
     }
 ])
 
 function App() {
-    return <RouterProvider router={router}/>;
+
+    return <Provider store={store}>
+        <RouterProvider router={router}/>;
+    </Provider>
 }
 
 export default App;
