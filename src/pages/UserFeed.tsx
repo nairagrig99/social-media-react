@@ -12,7 +12,7 @@ export default function UserFeed() {
         userStoreDispatch(fetchUser())
     }, [userStoreDispatch]);
 
-    return <div className="flex gap-10 justify-between">
+    return <div className="flex gap-10 justify-between feed">
         <UserprofileInFeed/>
         <Feed/>
         <FeedEvents/>

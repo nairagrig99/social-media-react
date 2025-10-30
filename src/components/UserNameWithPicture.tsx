@@ -1,8 +1,12 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../Store/store";
 import {UserInterface} from "../Interface/user-interface";
 import avatar from '../assets/images/avatar.png'
 import {ProfileMenuInterface} from "../Interface/profile-menu.interface";
+import {useEffect} from "react";
+import {userInfo} from "node:os";
+import userSlice from "../Store/userSlice";
+import {fetchUser} from "../Store/userThunk";
 
 const menuItems = [
     {
@@ -51,9 +55,17 @@ const menuItems = [
         "icon": "events.png"
     }
 ]
-export default function UserNameWithPicture() {
-    const user: UserInterface = useSelector((state: RootState) => state.userStore.data)
-
+type menuInterface = {
+    isShown?: boolean
+}
+export default function UserNameWithPicture({isShown = true}: menuInterface) {
+    const dispatch = useDispatch();
+    const user: UserInterface = useSelector((state: RootState) => state.userStore.data);
+    useEffect(() => {
+        // @ts-ignore
+        dispatch(fetchUser());
+    }, []);
+    console.log('user', user)
     return (
         <div className="">
             <div className="flex gap-2.5 items-center">
@@ -61,7 +73,8 @@ export default function UserNameWithPicture() {
                      className="w-[40px] border border-solid rounded-full"/>
                 <h3>{user.first_name}</h3>
             </div>
-            <div className="mt-5">
+
+            {isShown && (<div className="mt-5">
                 {
                     menuItems && (menuItems.map((menu: ProfileMenuInterface) => {
                         return (
@@ -73,6 +86,7 @@ export default function UserNameWithPicture() {
                     }))
                 }
             </div>
+            )}
         </div>
     )
 }

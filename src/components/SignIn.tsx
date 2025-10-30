@@ -72,7 +72,6 @@ export default function SignIn() {
                     blockClass={INPUT_BLOCK_CLASS}
                     className={INPUT_CLASS}
                     value={form.email}
-
                     onChange={(event: any) => {
                         handleChange('email', event.target.value)
                     }}
@@ -132,7 +131,7 @@ export async function createSignInAction({request}: RequestInterface) {
                 success: false
             };
         }
-        return redirect("/profile/feed");
+        return redirect("/feed");
     } catch (error) {
         return {
             error: "Network error occurred",

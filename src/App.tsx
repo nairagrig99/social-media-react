@@ -11,6 +11,7 @@ import ProtectedRoute from "./pages/ProtectedRoute";
 import UserFeed from "./pages/UserFeed";
 import {Provider} from "react-redux";
 import store from "./Store/store";
+import StoriesCreatePage from "./pages/StoriesCreatePage";
 
 const router = createBrowserRouter([
     {
@@ -43,23 +44,27 @@ const router = createBrowserRouter([
     {
         index: true,
         element: <Navigate to="/auth" replace/>
-    }, {
+    },
+    {
         path: '/profile',
         element: (
             <ProtectedRoute>
                 <AccountPage/>
             </ProtectedRoute>
-        ),
-        children: [
-            {path: 'feed', element: <UserFeed/>}
-        ]
+        )
+    },
+    {path: '/feed', element: <UserFeed/>},
+    {
+        path: "/stories/create",
+        element: <StoriesCreatePage/>
     }
 ])
-
+const element = <h1>Hello world</h1>;
+console.log('element',element);
 function App() {
 
     return <Provider store={store}>
-        <RouterProvider router={router}/>;
+        <RouterProvider router={router}/>
     </Provider>
 }
 
