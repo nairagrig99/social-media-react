@@ -16,9 +16,6 @@ export default function UserShare() {
         const date = new Date()
 
         const formatted = `${date.getDate()}_${date.getMonth() + 1}_${date.getFullYear()}_${date.getMilliseconds()}ms`;
-
-        console.log('date.getFullYear()', formatted)
-
         const updateValue = {
             [formatted]: {
                 id: user.id,
@@ -26,7 +23,6 @@ export default function UserShare() {
                 value: form
             }
         }
-        console.log('sssssssss', updateValue)
         // @ts-ignore
         dispatch(updateUser(updateValue))
     }

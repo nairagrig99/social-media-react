@@ -1,0 +1,28 @@
+import CloseSvg from "../../UI/CloseSvg";
+import FacebookLogo from "../../UI/FacebookLogo";
+import {Link} from "react-router-dom";
+import UserNameWithPicture from "../UserNameWithPicture";
+import SettingsForPhotoStory from "./SettingsForPhotoStory";
+import SettingsForTextStory from "./SettingsForTextStory";
+import {StorySettings} from "../../Interface/story-settings";
+
+export default function LeftSideOfStoryMenu({photoStory, textStory}: StorySettings) {
+
+    return <div>
+        <div className="flex items-center gap-2 border-b border-solid pb-2">
+            <Link to="/feed">
+                <CloseSvg/>
+            </Link>
+            <Link to="/">
+                <FacebookLogo/>
+            </Link>
+        </div>
+        <div className="py-2 border-b border-solid">
+            <UserNameWithPicture isShown={false}/>
+        </div>
+        <div>
+            {photoStory && (<SettingsForPhotoStory/>)}
+            {textStory && (<SettingsForTextStory/>)}
+        </div>
+    </div>
+}

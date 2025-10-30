@@ -10,7 +10,7 @@ export default function Header() {
                 <FacebookLogo/>
             </Link>
             <Search/>
-            <Link to="/profile/feed">
+            <Link to="/feed">
                 <FeedLogo/>
             </Link>
         </header>
