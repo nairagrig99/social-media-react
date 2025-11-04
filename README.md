@@ -1,6 +1,10 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  
+### run back-end with command in project root directory to run db.json
+
+## json-server --watch db.json
 
 ## Available Scripts
 

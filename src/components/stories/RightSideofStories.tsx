@@ -13,7 +13,6 @@ export default function RightSideOfStories({photoStory, textStory}: StorySetting
     const [text, setTextStory] = useState();
 
     const getPhotoStory = (imgSrc: string) => {
-        console.log("imageeee", imgSrc);
         setPhotoStory(imgSrc);
         photoStory(imgSrc)
     }

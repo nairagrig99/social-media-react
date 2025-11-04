@@ -65,7 +65,7 @@ export default function UserNameWithPicture({isShown = true}: menuInterface) {
         // @ts-ignore
         dispatch(fetchUser());
     }, []);
-    console.log('user', user)
+    // console.log('user', user)
     return (
         <div className="">
             <div className="flex gap-2.5 items-center">
