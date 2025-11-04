@@ -2,10 +2,11 @@ import {createSlice} from "@reduxjs/toolkit";
 import {fetchUser, updateUser} from "./userThunk";
 import {UserInterface} from "../Interface/user-interface";
 import {INITIAL_STATE} from "../constants/user-initial-state";
+import {Status} from "../Interface/status-type";
 
 export interface UserState {
     data: UserInterface;
-    status: 'idle' | 'loading' | 'succeeded' | 'rejected';
+    status: Status;
     error: string | null;
 }
 
