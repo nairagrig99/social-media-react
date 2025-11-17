@@ -9,7 +9,7 @@ import {StorySettings} from "../../Interface/story-settings";
 export default function LeftSideOfStoryMenu({photoStory, textStory}: StorySettings) {
 
     return <div>
-        <div className="flex items-center gap-2 border-b border-solid pb-2">
+        <div className="flex items-center gap-2 border-b border-solid p-2">
             <Link to="/feed">
                 <CloseSvg/>
             </Link>
@@ -17,7 +17,7 @@ export default function LeftSideOfStoryMenu({photoStory, textStory}: StorySettin
                 <FacebookLogo/>
             </Link>
         </div>
-        <div className="py-2 border-b border-solid">
+        <div className="p-2 border-b border-solid">
             <UserNameWithPicture isShown={false}/>
         </div>
         <div>

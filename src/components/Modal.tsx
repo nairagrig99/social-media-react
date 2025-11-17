@@ -1,16 +1,15 @@
-import {ChildrenProps} from "../Interface/children-props.interface";
-import {createPortal} from "react-dom";
+import { createPortal } from "react-dom";
+import { ChildrenProps } from "../Interface/children-props.interface";
 
-export default function Modal({children, className}: ChildrenProps) {
+export default function Modal({ children, className }: ChildrenProps) {
+    const modalRoot = document.querySelector("#modal");
 
+    if (!modalRoot) return null; //
 
-    return (
+    return createPortal(
         <div className={className}>
-            {createPortal(
-                // @ts-ignore
-                children, document.querySelector('#modal')
-            )}
-        </div>
-
-    )
+            {children}
+        </div>,
+        modalRoot
+    );
 }

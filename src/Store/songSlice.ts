@@ -6,13 +6,15 @@ import {iTunesTrack} from "../Interface/itunes-track.interface";
 type SearchParam = {
     searchSong: iTunesTrack[],
     selectedSong: iTunesTrack | null,
-    status: Status
+    status: Status,
+    isTextSelected: boolean
 }
 
 const initialState: SearchParam = {
     searchSong: [],
     selectedSong: null,
-    status: 'idle'
+    status: 'idle',
+    isTextSelected: false
 }
 
 const searchSongSlice = createSlice({
@@ -27,6 +29,9 @@ const searchSongSlice = createSlice({
         },
         clearSearch(state) {
             return initialState;
+        },
+        selectTextStoryWithPhoto(state) {
+            state.isTextSelected = !state.isTextSelected;
         }
     },
     extraReducers: (builder) => {
@@ -43,5 +48,5 @@ const searchSongSlice = createSlice({
     }
 })
 
-export const {setSelectedSong, removeSelectedSong, clearSearch} = searchSongSlice.actions
+export const {setSelectedSong, removeSelectedSong, clearSearch, selectTextStoryWithPhoto} = searchSongSlice.actions
 export default searchSongSlice.reducer;
