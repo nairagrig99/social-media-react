@@ -20,18 +20,20 @@ export default function RightSideOfStories({photoStory, textStory, discardStory}
 
     useEffect(() => {
         setPhotoStory('');
+        setTextStory(false)
         photoStory('');
+        textStory(false);
         dispatch(removeSelectedSong());
         dispatch(clearSearch());
     }, [discardStory]);
     const getPhotoStory = (imgSrc: string) => {
         setPhotoStory(imgSrc);
-        photoStory(imgSrc)
+        photoStory(imgSrc);
     }
     const createTextStory = (data: boolean) => {
         setTextStory(data)
         textStory(data)
-        dispatch(selectTextStoryWithPhoto())
+        dispatch(selectTextStoryWithPhoto(true))
     }
 
     return <div className="flex justify-center gap-5 items-center h-full right-side__content">

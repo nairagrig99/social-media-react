@@ -9,7 +9,7 @@ export default function SettingsForPhotoStory() {
     const dispatch = useDispatch<AppDispatch>();
 
     const addTextToPhoto = () => {
-        dispatch(selectTextStoryWithPhoto())
+        dispatch(selectTextStoryWithPhoto(true))
     }
 
     const addMusicToPhoto = () => {

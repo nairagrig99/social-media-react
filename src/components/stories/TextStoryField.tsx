@@ -4,6 +4,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../Store/store";
 import MuteSvg from "../../UI/MuteSvg";
 import {useOnClickOutside} from "../../Hooks/useOnClickOutside";
+import {selectTextStoryWithPhoto} from "../../Store/songSlice";
 
 export type TextStoryFieldProps = {
     input: {
@@ -31,16 +32,16 @@ export default function TextStoryField({input, setInputVisible, isTextStory}: Te
 
     const audioRef = useRef<HTMLAudioElement>(null);
 
+
     useEffect(() => {
         if (setInputVisible) {
-            console.log("isInputVisible", isInputVisible)
             setInputVisible(isInputVisible)
         }
     }, [isInputVisible]);
 
     useOnClickOutside(ref, () => {
-        setIsInputVisible(false)
-        console.log('outside click')
+        // setIsInputVisible(false)
+        // dispatch(selectTextStoryWithPhoto(true))
     });
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
         setDragging(true);

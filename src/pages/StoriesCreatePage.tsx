@@ -6,8 +6,10 @@ import Button from "../UI/Button";
 export default function StoriesCreatePage() {
     const [photoStories, setPhotoStories] = useState<string>()
     const [textStories, setTextStories] = useState<boolean>()
-    const [discardStory, setDiscardStory] = useState<boolean>(false)
-    console.log("textStories",textStories)
+    const [discardStory, setDiscardStory] = useState<boolean>(false);
+    //
+    // console.log("textStories", textStories)
+    // console.log("photoStories",photoStories)
     return <div>
         <div className="flex w-full">
             <div className="left-side__menu w-100 h-screen">
@@ -15,7 +17,7 @@ export default function StoriesCreatePage() {
 
                     <LeftSideOfStoryMenu textStory={textStories} photoStory={photoStories}/>
 
-                    {!!photoStories?.length && (<div className="flex justify-center gap-2">
+                    {(!!photoStories?.length || textStories) && (<div className="flex justify-center gap-2">
                         <Button onClick={() => setDiscardStory((discard) => !discard)} value="Discard"
                                 className="bg-gray-500 px-2.5 py-1.5 rounded text-white"/>
                         <Button value="Share to Story" className="bg-blue-500 px-2.5 py-1.5 rounded text-white"/>

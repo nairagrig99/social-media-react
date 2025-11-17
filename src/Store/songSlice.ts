@@ -30,8 +30,8 @@ const searchSongSlice = createSlice({
         clearSearch(state) {
             return initialState;
         },
-        selectTextStoryWithPhoto(state) {
-            state.isTextSelected = !state.isTextSelected;
+        selectTextStoryWithPhoto(state,action) {
+            state.isTextSelected = action.payload;
         }
     },
     extraReducers: (builder) => {
