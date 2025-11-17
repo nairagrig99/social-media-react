@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './App.css';
 import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
 import SignIn, {createSignInAction} from "./components/SignIn";
@@ -59,13 +59,11 @@ const router = createBrowserRouter([
         element: <StoriesCreatePage/>
     }
 ])
-const element = <h1>Hello world</h1>;
-console.log('element',element);
+
 function App() {
 
     return <Provider store={store}>
         <RouterProvider router={router}/>
     </Provider>
 }
-
 export default App;
