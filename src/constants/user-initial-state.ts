@@ -1,9 +1,9 @@
 import {UserInterface} from "../Interface/user-interface";
 
-export const INITIAL_STATE:UserInterface = {
+export const INITIAL_STATE: UserInterface = {
     id: '',
     photo: [],
-    profile_image:'',
+    profile_image: '',
     coverPhoto: [],
     friends: [],
     first_name: "",
@@ -16,6 +16,28 @@ export const INITIAL_STATE:UserInterface = {
     birthOfDate: "",
     country: "",
     city: "",
-    stories: [],
-    user_share_list:[]
+    stories: {
+        photoStoryList: [
+            {
+                photo: "",
+                photoSettings: {
+                    text: "",
+                    size: "",
+                    color: ""
+
+                }
+            }
+        ],
+        textStoryList: [
+            {
+                text: "",
+                textSettings: {
+                    size: "",
+                    bgColor: ""
+                }
+            }
+        ]
+    },
+
+    user_share_list: []
 }

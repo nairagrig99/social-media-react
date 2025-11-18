@@ -14,20 +14,42 @@ export interface UserInterface {
     birthOfDate: string;
     country: string;
     city: string;
-    stories: string[],
+    stories: UserStory,
     user_share_list: UserShareList[]
 }
 
 export interface UserShareList {
-    "share_date": ShareListItem
+    share_date: ShareListItem
 }
 
 export interface ShareListItem {
-    "text": string,
-    "images": string[],
-    "video": string[]
+    text: string,
+    images: string[],
+    video: string[]
 }
 
+export interface UserStory {
+    photoStoryList: [
+        {
+            photo: string,
+            photoSettings: {
+                text: string,
+                size: string,
+                color: string
+
+            }
+        }
+    ],
+    textStoryList: [
+        {
+            text: string,
+            textSettings: {
+                size: string,
+                bgColor: string
+            }
+        }
+    ]
+}
 
 
 

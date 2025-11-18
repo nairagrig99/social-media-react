@@ -10,6 +10,13 @@ export default function StoriesCreatePage() {
     //
     // console.log("textStories", textStories)
     // console.log("photoStories",photoStories)
+
+    const shareStory = () => {
+        console.log("share")
+        console.log("photoStories",photoStories)
+        console.log("textStories",textStories)
+    }
+
     return <div>
         <div className="flex w-full">
             <div className="left-side__menu w-100 h-screen">
@@ -20,7 +27,8 @@ export default function StoriesCreatePage() {
                     {(!!photoStories?.length || textStories) && (<div className="flex justify-center gap-2">
                         <Button onClick={() => setDiscardStory((discard) => !discard)} value="Discard"
                                 className="bg-gray-500 px-2.5 py-1.5 rounded text-white"/>
-                        <Button value="Share to Story" className="bg-blue-500 px-2.5 py-1.5 rounded text-white"/>
+                        <Button onClick={shareStory} value="Share to Story"
+                                className="bg-blue-500 px-2.5 py-1.5 rounded text-white"/>
                     </div>)}
                 </div>
             </div>
