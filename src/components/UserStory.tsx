@@ -3,10 +3,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import {Autoplay, Pagination} from "swiper/modules";
-
 import {useDispatch, useSelector} from "react-redux";
 import {useRef} from "react";
-
 import AddStoryIcon from "../UI/AddStoryIcon";
 import {closeStoryModal, openStoryModal} from "../Store/ModalSlice";
 import Modal from "./Modal";
@@ -70,14 +68,14 @@ export default function UserStory() {
                                             disableOnInteraction: false,
                                         }}
                                     >
-                                        {registeredUser?.stories && registeredUser?.stories.map((img, index) => {
-                                            return (<SwiperSlide>
-                                                <img className="h-[250px] object-cover" key={index}
-                                                     src={img}
-                                                     alt=""/>
-                                            </SwiperSlide>)
-                                        })
-                                        }
+                                        {/*{registeredUser?.stories && registeredUser?.stories.map((img, index) => {*/}
+                                        {/*    return (<SwiperSlide>*/}
+                                        {/*        <img className="h-[250px] object-cover" key={index}*/}
+                                        {/*             src={img}*/}
+                                        {/*             alt=""/>*/}
+                                        {/*    </SwiperSlide>)*/}
+                                        {/*})*/}
+                                        {/*}*/}
                                     </Swiper>
                                 </div>
                             </div>
@@ -85,12 +83,12 @@ export default function UserStory() {
                     </Modal>
                 )}
             </div>
-            <div className="flex h-full w-32">
-                {registeredUser?.stories.length > 0 &&
-                    (<img onClick={openStoryView} src={registeredUser.stories[0]} alt=""
-                          className="object-cover h-full"/>)
-                }
-            </div>
+            {/*<div className="flex h-full w-32">*/}
+            {/*    {registeredUser?.stories.length > 0 &&*/}
+            {/*        (<img onClick={openStoryView} src={registeredUser.stories[0]} alt=""*/}
+            {/*              className="object-cover h-full"/>)*/}
+            {/*    }*/}
+            {/*</div>*/}
         </div>
     )
 }
