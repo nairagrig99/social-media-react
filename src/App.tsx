@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
 import SignIn, {createSignInAction} from "./components/SignIn";
@@ -9,9 +9,10 @@ import ErrorPage from "./pages/ErrorPage";
 import AccountPage from "./pages/AccountPage";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import UserFeed from "./pages/UserFeed";
-import {Provider} from "react-redux";
-import store from "./Store/store";
+import {Provider, useDispatch} from "react-redux";
+import store, {AppDispatch} from "./Store/store";
 import StoriesCreatePage from "./pages/StoriesCreatePage";
+import {fetchUser} from "./Store/userThunk";
 
 const router = createBrowserRouter([
     {
@@ -61,9 +62,13 @@ const router = createBrowserRouter([
 ])
 
 function App() {
+    const dispatch = useDispatch<AppDispatch>();
 
-    return <Provider store={store}>
-        <RouterProvider router={router}/>
-    </Provider>
+    useEffect(() => {
+        // @ts-ignore
+        dispatch(fetchUser())
+    }, []);
+
+    return <RouterProvider router={router} />;
 }
 export default App;

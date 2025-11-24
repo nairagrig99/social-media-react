@@ -12,7 +12,7 @@ export default function UserShare() {
     const [form, setForm] = useState<string>('')
     const dispatch = useDispatch();
 
-       const shareThoughts = () => {
+    const shareThoughts = () => {
         const date = new Date()
 
         const formatted = `${date.getDate()}_${date.getMonth() + 1}_${date.getFullYear()}_${date.getMilliseconds()}ms`;
@@ -27,7 +27,7 @@ export default function UserShare() {
         dispatch(updateUser(updateValue))
     }
 
-
+    if (!user) return null
     return (
         <div className="flex gap-2.5 items-center bg-white rounded-xl p-2.5">
             <img src={user.profile_image ? user.profile_image : profileImage} className="w-[45px]"/>

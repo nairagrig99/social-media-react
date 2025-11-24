@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {API_KEY, BIN_ID} from "../Store/userThunk";
 
 type FormValues = {
     first_name: string;
@@ -39,10 +40,17 @@ export function useFormValidation(initialValues: FormValues) {
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
             newErrors.email = "Invalid email format";
         } else {
-            const response = await fetch('http://localhost:3000/sign-up')
+            const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`,{
+                headers: {
+                    'X-Master-Key': API_KEY
+                }
+            });
+
             const result = await response.json();
 
-            const isEmailExist = result.find((data: FormValues) => data.email === values.email)
+            const {sign_in, sign_up} = result.record;
+
+            const isEmailExist = sign_up.find((data: FormValues) => data.email === values.email);
             if (isEmailExist) {
                 newErrors.email = 'Email is already exist, attempt another'
             }
@@ -62,8 +70,6 @@ export function useFormValidation(initialValues: FormValues) {
         } else if (values.re_password !== values.password) {
             newErrors.re_password = "Passwords are not equal";
         }
-
-
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };

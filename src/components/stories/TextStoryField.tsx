@@ -1,10 +1,11 @@
 import Input from "../../UI/Input";
 import React, {useEffect, useRef, useState} from "react";
-import {useSelector} from "react-redux";
-import {RootState} from "../../Store/store";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "../../Store/store";
 import MuteSvg from "../../UI/MuteSvg";
 import {useOnClickOutside} from "../../Hooks/useOnClickOutside";
 import {selectTextStoryWithPhoto} from "../../Store/songSlice";
+import {setState} from "../../Store/TextStorySlice";
 
 export type TextStoryFieldProps = {
     input: {
@@ -22,16 +23,25 @@ export default function TextStoryField({input, setInputVisible, isTextStory}: Te
     const [dragging, setDragging] = useState(false);
     const [offset, setOffset] = useState({x: 0, y: 0});
     const [storyText, setStoryText] = useState<string>();
-
+    const dispatch = useDispatch<AppDispatch>();
     const [isInputVisible, setIsInputVisible] = useState<boolean>(true);
 
     const selectText = useSelector((state: RootState) => state.searchSongSlice.isTextSelected);
     const selectedSong = useSelector((store: RootState) => store.searchSongSlice.selectedSong)
+    const selectedText = useSelector((store: RootState) => store.textStorySlice.textSettings)
 
     const [isMuted, setIsMuted] = useState(false);
 
     const audioRef = useRef<HTMLAudioElement>(null);
 
+    useEffect(() => {
+        if (storyText?.trim() !== '') {
+            dispatch(setState({
+                ...selectedText,
+                text: storyText
+            }))
+        }
+    }, [storyText]);
 
     useEffect(() => {
         if (setInputVisible) {

@@ -8,9 +8,7 @@ interface ChildProps {
 }
 export default function CreatePhotoStory({photoStory}:ChildProps) {
 
-    const dispatch = useDispatch<AppDispatch>();
     const fileRef = useRef<HTMLInputElement>(null);
-    const registeredUser = useSelector((state: RootState) => state.userStore.data);
 
     const openPanel = () => {
         fileRef?.current?.click()

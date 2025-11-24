@@ -1,3 +1,14 @@
+import {iTunesTrack} from "./itunes-track.interface";
+
+export interface RecordUser {
+    record: initialInterface
+}
+
+export interface initialInterface {
+    sign_in: UserInterface,
+    sign_up?: UserInterface[]
+}
+
 export interface UserInterface {
     id: string,
     profile_image: string,
@@ -29,26 +40,26 @@ export interface ShareListItem {
 }
 
 export interface UserStory {
-    photoStoryList: [
-        {
-            photo: string,
-            photoSettings: {
-                text: string,
-                size: string,
-                color: string
+    photoStoryList: {
+        photo: string;
+        photoSettings: {
+            text: string;
+            fontSize: string;
+            color: string;
+            song?: iTunesTrack | null;
+        };
+        createdDate: Date
+    }[];
 
-            }
-        }
-    ],
-    textStoryList: [
-        {
-            text: string,
-            textSettings: {
-                size: string,
-                bgColor: string
-            }
-        }
-    ]
+    textStoryList: {
+        text: string;
+        textSettings: {
+            fontSize: string;
+            bgColor: string;
+            song?: iTunesTrack | null;
+        };
+        createdDate: Date
+    }[];
 }
 
 

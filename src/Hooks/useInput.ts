@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {InputSettingsEnum} from "../constants/input-settings.enum";
-import {useDispatch} from "react-redux";
-import {AppDispatch} from "../Store/store";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "../Store/store";
 import {setState} from "../Store/TextStorySlice";
 
 export default function useInput() {
 
     const dispatch = useDispatch<AppDispatch>()
+    const selectText = useSelector((state: RootState) => state.textStorySlice.textSettings)
 
     const [input, setInput] = useState({
         color: "#FFF",
@@ -14,7 +15,11 @@ export default function useInput() {
     });
 
     useEffect(() => {
-        dispatch(setState(input))
+        dispatch(setState({
+            ...selectText,
+            color: input.color,
+            fontSize: input.fontSize
+        }))
     }, [input]);
 
     const handleChange = (inputType: string, event: React.ChangeEvent<HTMLInputElement>) => {

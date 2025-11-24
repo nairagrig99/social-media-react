@@ -16,7 +16,7 @@ import {useNavigate, useNavigation} from "react-router-dom";
 export default function UserStory() {
     const isOpen = useSelector((state: RootState) => state.modalStory.isOpen);
     const dispatch = useDispatch<AppDispatch>();
-    const registeredUser = useSelector((state: RootState) => state.userStore.data);
+    // const registeredUser = useSelector((state: RootState) => state.userStore.data);
     const navigate = useNavigate();
     const handleStoryModal = () => {
         navigate('/stories/create');

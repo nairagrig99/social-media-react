@@ -2,19 +2,32 @@ import LeftSideOfStoryMenu from "../components/stories/LeftSideOfStoryMenu";
 import RightSideOfStories from "../components/stories/RightSideofStories";
 import {useState} from "react";
 import Button from "../UI/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "../Store/store";
+import {updateUser} from "../Store/userThunk";
+import {UserInterface} from "../Interface/user-interface";
+import {UpdateUserInfo} from "../Interface/update-user-info";
 
 export default function StoriesCreatePage() {
     const [photoStories, setPhotoStories] = useState<string>()
     const [textStories, setTextStories] = useState<boolean>()
     const [discardStory, setDiscardStory] = useState<boolean>(false);
-    //
-    // console.log("textStories", textStories)
-    // console.log("photoStories",photoStories)
-
+    const selectText = useSelector((state: RootState) => state.textStorySlice);
+    const selectSong = useSelector((state: RootState) => state.searchSongSlice.selectedSong);
+    const selectUser: UserInterface = useSelector((state: RootState) => state.userStore.data);
+    const dispatch = useDispatch<AppDispatch>();
     const shareStory = () => {
-        console.log("share")
-        console.log("photoStories",photoStories)
-        console.log("textStories",textStories)
+
+        dispatch(updateUser({
+
+            photo: photoStories!,
+            photoSettings: {
+                ...selectText.textSettings,
+                song: selectSong
+            },
+            createdDate: new Date()
+        }))
+
     }
 
     return <div>
@@ -24,7 +37,7 @@ export default function StoriesCreatePage() {
 
                     <LeftSideOfStoryMenu textStory={textStories} photoStory={photoStories}/>
 
-                    {(!!photoStories?.length || textStories) && (<div className="flex justify-center gap-2">
+                    {(!!photoStories || textStories) && (<div className="flex justify-center gap-2">
                         <Button onClick={() => setDiscardStory((discard) => !discard)} value="Discard"
                                 className="bg-gray-500 px-2.5 py-1.5 rounded text-white"/>
                         <Button onClick={shareStory} value="Share to Story"
