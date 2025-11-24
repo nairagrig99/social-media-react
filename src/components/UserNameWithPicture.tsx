@@ -59,13 +59,10 @@ type menuInterface = {
     isShown?: boolean
 }
 export default function UserNameWithPicture({isShown = true}: menuInterface) {
-    const dispatch = useDispatch();
+
     const user: UserInterface = useSelector((state: RootState) => state.userStore.data);
-    useEffect(() => {
-        // @ts-ignore
-        dispatch(fetchUser());
-    }, []);
-    // console.log('user', user)
+    // console.log("user",user)
+    if (!user) return null
     return (
         <div className="">
             <div className="flex gap-2.5 items-center">

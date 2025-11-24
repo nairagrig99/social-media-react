@@ -13,6 +13,7 @@ export default function PhotoEdit({photoStory}: Photo) {
 
     const [isInputVisible, setIsInputVisible] = useState(true);
     const selectText = useSelector((state: RootState) => state.searchSongSlice.isTextSelected);
+
     const {input, handleChange} = useInput();
 
     return <div className="relative w-[350px] h-[500px] overflow-hidden">

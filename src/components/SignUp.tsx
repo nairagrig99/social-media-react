@@ -7,7 +7,8 @@ import {useEffect, useState} from "react";
 import {Country} from "../Interface/select-interface";
 import {RequestInterface} from "../Interface/request-interface";
 import {useFormValidation} from "../Hooks/useValidation";
-import { redirect } from "react-router-dom";
+import {redirect} from "react-router-dom";
+import {API_KEY, BIN_ID} from "../Store/userThunk";
 
 const initialState = {
     first_name: "",
@@ -76,6 +77,8 @@ export default function SignUp() {
         }
         return years;
     }
+
+    // console.log("isValidsssssssss", form)
 
     return <div>
         <form className={SIGN_IN_MAIN_CLASS}>
@@ -177,29 +180,48 @@ export default function SignUp() {
                     onClick={async (e) => {
                         e.preventDefault();
                         const isValid = await validateForm(form);
+
                         if (isValid) {
-                           await submit(form, { method: "post", action: "/auth/sign-up" });
+                            await submit(form, {method: "post", action: "/auth/sign-up"});
                         }
                     }}
                     className={BUTTON_CLASS} value="Sign In"/>
             {Object.keys(errors).length > 0}
         </form>
-        <b className="text-center w-full flex justify-center gap-4">You Already have an Account ? <Link to="/auth/sign-in" className="underline">Sign In</Link></b>
+        <b className="text-center w-full flex justify-center gap-4">You Already have an Account ? <Link
+            to="/auth/sign-in" className="underline">Sign In</Link></b>
     </div>
 }
 
 export async function createSignUpAction({request}: RequestInterface) {
-    const formData = await request.formData();
-    const form = Object.fromEntries(formData.entries());
 
-    const res = await fetch('http://localhost:3000/sign-up', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form })
+    const formData = await request.formData();
+
+    const newUser = Object.fromEntries(formData.entries());
+
+    const userFetch = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'X-Master-Key': API_KEY
+        }
+    });
+
+    const getArray = await userFetch.json();
+    const records = getArray.record;
+    records.sign_up.push(newUser);
+
+    const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+            'X-Master-Key': API_KEY
+        },
+        body: JSON.stringify(records)
     });
 
     if (!res.ok) {
-        return { error: "Failed to sign up" };
+        return {error: "Failed to sign up"};
     }
 
     return redirect("/auth/sign-in");
