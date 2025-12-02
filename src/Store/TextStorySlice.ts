@@ -3,7 +3,9 @@ import {createSlice} from "@reduxjs/toolkit";
 export interface TextSettings {
     color: string;
     fontSize: string;
-    text: string
+    text: string,
+    positionX?: string,
+    positionY?: string
 }
 
 export interface TextState {
@@ -14,7 +16,9 @@ export const textStoryInitialState: TextState = {
     textSettings: {
         color: "#FFF",
         fontSize: "20",
-        text: ""
+        text: "",
+        positionX:"",
+        positionY:""
     }
 }
 export const textStorySlice = createSlice({

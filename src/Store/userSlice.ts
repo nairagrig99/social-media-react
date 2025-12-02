@@ -1,30 +1,32 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {fetchUser, updateUser} from "./userThunk";
-import {RecordUser, UserInterface} from "../Interface/user-interface";
-import {INITIAL_STATE} from "../constants/user-initial-state";
+import {UserInterface} from "../Interface/user-interface";
 import {Status} from "../Interface/status-type";
+import {INITIAL_STATE} from "../constants/user-initial-state";
 
 export interface UserState {
-    data: UserInterface;
+    users: UserInterface[],
+    signInUser: UserInterface,
     status: Status;
     error: string | null;
 }
 
-
-const initialState: UserState = {// @ts-ignore
-    data: null,
+const initialState: UserState = {
+    users: [INITIAL_STATE],
+    signInUser: INITIAL_STATE,
     status: 'idle',
     error: null,
 };
-
 
 const userSlice = createSlice({
     name: "user",
     initialState: initialState,
     reducers: {
-        // @ts-ignore
         getSignInUser: (state) => {
-            return state.data
+            const saved = localStorage.getItem("loggedUser");
+            state.signInUser = saved
+                ? (JSON.parse(saved) as UserInterface)
+                : INITIAL_STATE;
         }
     },
     extraReducers: (builder) => {
@@ -33,7 +35,7 @@ const userSlice = createSlice({
         })
             .addCase(fetchUser.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.data = action.payload.record.sign_in[0];
+                state.users = action.payload;
             })
             .addCase(fetchUser.rejected, (state, action) => {
                 state.status = 'rejected'
@@ -43,17 +45,25 @@ const userSlice = createSlice({
                 state.status = 'loading'
             })
             .addCase(updateUser.fulfilled, (state, action) => {
-                console.log("action", action)
-
-                // @ts-ignore
                 const updatedKey = action.meta.arg.key;
-                state.status = 'succeeded';
-                console.log("action", action);
-                //
-                // state.data = {
-                //     ...state.data,
-                //     [updatedKey]: [...state.data[updatedKey], ...action.payload[updatedKey]]
-                // }
+                const updatedInnerKey = action.meta.arg.innerKey;
+
+                if (updatedKey === "stories") {
+                    if (updatedInnerKey === 'photoStoryList' || updatedInnerKey === 'textStoryList') {
+                        state.signInUser = {
+                            ...state.signInUser,
+                            [updatedKey]: {
+                                ...state.signInUser[updatedKey],
+                                [updatedInnerKey]: [
+                                    ...(state.signInUser[updatedKey]?.[updatedInnerKey] || []),
+                                    ...action.payload[updatedKey][updatedInnerKey]
+                                ]
+                            }
+                        };
+                    }
+                    localStorage.setItem("loggedUser", JSON.stringify(state.signInUser));
+                }
+
             })
             .addCase(updateUser.rejected, (state, action) => {
                 state.status = "rejected";
@@ -61,5 +71,5 @@ const userSlice = createSlice({
             });
     }
 })
-
+export const {getSignInUser} = userSlice.actions
 export default userSlice.reducer;

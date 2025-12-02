@@ -17,7 +17,7 @@ const profileMenuItemsSlice = createSlice({
         menu.addCase(profileMenu.pending, (state) => {
             state.status = 'loading'
         }).addCase(profileMenu.fulfilled, (state, action) => {
-            // @ts-ignore
+
             state.data = action.payload
             state.status = "succeeded"
         }).addCase(profileMenu.rejected, (state, action) => {

@@ -60,8 +60,7 @@ type menuInterface = {
 }
 export default function UserNameWithPicture({isShown = true}: menuInterface) {
 
-    const user: UserInterface = useSelector((state: RootState) => state.userStore.data);
-    // console.log("user",user)
+    const user: UserInterface = useSelector((state: RootState) => state.userStore.signInUser);
     if (!user) return null
     return (
         <div className="">
@@ -77,7 +76,7 @@ export default function UserNameWithPicture({isShown = true}: menuInterface) {
                         return (
                             <div key={menu.id} className="pb-2.5">
                                 <span>{menu.label}</span>
-                                {/*{<img src={menu.icon}/>}*/}
+                                {<img src={menu.icon}/>}
                             </div>
                         );
                     }))

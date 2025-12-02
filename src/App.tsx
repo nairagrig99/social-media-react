@@ -9,10 +9,11 @@ import ErrorPage from "./pages/ErrorPage";
 import AccountPage from "./pages/AccountPage";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import UserFeed from "./pages/UserFeed";
-import {Provider, useDispatch} from "react-redux";
-import store, {AppDispatch} from "./Store/store";
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "./Store/store";
 import StoriesCreatePage from "./pages/StoriesCreatePage";
 import {fetchUser} from "./Store/userThunk";
+import {getSignInUser} from "./Store/userSlice";
 
 const router = createBrowserRouter([
     {
@@ -67,8 +68,15 @@ function App() {
     useEffect(() => {
         // @ts-ignore
         dispatch(fetchUser())
+        dispatch(getSignInUser())
     }, []);
 
-    return <RouterProvider router={router} />;
+    return <>
+        <RouterProvider router={router}/>;
+    </>
+
 }
+
 export default App;
+
+
