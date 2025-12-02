@@ -1,5 +1,6 @@
-import {useState} from "react";
-import {API_KEY, BIN_ID} from "../Store/userThunk";
+import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
+import {RootState} from "../Store/store";
 
 type FormValues = {
     first_name: string;
@@ -20,8 +21,12 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{
 
 export function useFormValidation(initialValues: FormValues) {
     const [form, setFormValues] = useState<FormValues>(initialValues);
-
+    const select = useSelector((state: RootState) => state.userStore.users)
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+    useEffect(() => {
+
+    }, [select]);
 
     const validateForm = async (values: FormValues) => {
 
@@ -40,23 +45,15 @@ export function useFormValidation(initialValues: FormValues) {
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
             newErrors.email = "Invalid email format";
         } else {
-            const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`,{
-                headers: {
-                    'X-Master-Key': API_KEY
-                }
-            });
-
-            const result = await response.json();
-
-            const {sign_in, sign_up} = result.record;
-
-            const isEmailExist = sign_up.find((data: FormValues) => data.email === values.email);
+            const isEmailExist = select.find((data: FormValues) => data.email === values.email)
             if (isEmailExist) {
                 newErrors.email = 'Email is already exist, attempt another'
             }
         }
 
-        if (values.phone.trim().length <= 3) {
+        const phoneRegExp = /^\+?[0-9]{7,15}$/;
+
+        if (values.phone.trim().length > 3 && !phoneRegExp.test(values.phone)) {
             newErrors.phone = "Phone is important";
         }
 
@@ -70,6 +67,7 @@ export function useFormValidation(initialValues: FormValues) {
         } else if (values.re_password !== values.password) {
             newErrors.re_password = "Passwords are not equal";
         }
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };

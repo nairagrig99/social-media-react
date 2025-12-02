@@ -18,8 +18,11 @@ export default function useInput() {
         dispatch(setState({
             ...selectText,
             color: input.color,
-            fontSize: input.fontSize
+            fontSize: input.fontSize,
+            positionX: selectText.positionX,
+            positionY: selectText.positionY
         }))
+
     }, [input]);
 
     const handleChange = (inputType: string, event: React.ChangeEvent<HTMLInputElement>) => {

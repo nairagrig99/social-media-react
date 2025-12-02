@@ -36,12 +36,14 @@ export default function TextStoryField({input, setInputVisible, isTextStory}: Te
 
     useEffect(() => {
         if (storyText?.trim() !== '') {
-            dispatch(setState({
+                dispatch(setState({
                 ...selectedText,
-                text: storyText
+                text: storyText,
+                positionX: position.x,
+                positionY: position.y
             }))
         }
-    }, [storyText]);
+    }, [storyText,position]);
 
     useEffect(() => {
         if (setInputVisible) {

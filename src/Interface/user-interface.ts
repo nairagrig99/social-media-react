@@ -1,14 +1,5 @@
 import {iTunesTrack} from "./itunes-track.interface";
 
-export interface RecordUser {
-    record: initialInterface
-}
-
-export interface initialInterface {
-    sign_in: UserInterface,
-    sign_up?: UserInterface[]
-}
-
 export interface UserInterface {
     id: string,
     profile_image: string,
@@ -25,7 +16,7 @@ export interface UserInterface {
     birthOfDate: string;
     country: string;
     city: string;
-    stories: UserStory,
+    stories: UserStoryModel,
     user_share_list: UserShareList[]
 }
 
@@ -39,7 +30,7 @@ export interface ShareListItem {
     video: string[]
 }
 
-export interface UserStory {
+export interface UserStoryModel {
     photoStoryList: {
         photo: string;
         photoSettings: {
@@ -48,19 +39,22 @@ export interface UserStory {
             color: string;
             song?: iTunesTrack | null;
         };
-        createdDate: Date
+        createdDate: ""
     }[];
 
     textStoryList: {
         text: string;
         textSettings: {
-            fontSize: string;
-            bgColor: string;
             song?: iTunesTrack | null;
-        };
-        createdDate: Date
+            text: {
+                fontSize: string;
+                color: string;
+                positionX: number,
+                positionY: number
+            }
+        }
+        createdDate: ""
     }[];
 }
 
-
-
+export type StoryCombineModal = UserStoryModel["photoStoryList"][number] & UserStoryModel["textStoryList"][number]

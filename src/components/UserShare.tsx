@@ -8,7 +8,7 @@ import {updateUser} from "../Store/userThunk";
 import {useState} from "react";
 
 export default function UserShare() {
-    const user: UserInterface = useSelector((state: RootState) => state.userStore.data);
+    const user: UserInterface = useSelector((state: RootState) => state.userStore.signInUser);
     const [form, setForm] = useState<string>('')
     const dispatch = useDispatch();
 
