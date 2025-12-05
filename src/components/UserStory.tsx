@@ -64,6 +64,13 @@ export default function UserStory() {
     }
 
     const slideChange = (swiper: any) => {
+        setIsMute(false);
+        if (swiper.slides.length - 1 === swiper.activeIndex) {
+            setTimeout(() => {
+                dispatch(closeStoryModal())
+            }, 30000);
+
+        }
         audioRef.current.forEach((audio) => {
             if (audio) {
                 audio.muted = true;
