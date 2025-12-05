@@ -1,60 +1,24 @@
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {RootState} from "../Store/store";
 import {UserInterface} from "../Interface/user-interface";
-import avatar from '../assets/images/avatar.png'
 import {ProfileMenuInterface} from "../Interface/profile-menu.interface";
-import {useEffect} from "react";
-import {userInfo} from "node:os";
-import userSlice from "../Store/userSlice";
-import {fetchUser} from "../Store/userThunk";
+import metaAi from '../assets/images/meta-ai.png';
+import friends from '../assets/images/friends.png';
+import memories from '../assets/images/memories.png';
+import avatar from '../assets/images/avatar.png';
 
 const menuItems = [
-    {
-        "id": 1,
-        "label": "Meta AI",
-        "icon": "../assets/images/meta-ai.png"
-    },
-    {
-        "id": 2,
-        "label": "Friends",
-        "icon": "friends.png"
-    },
-    {
-        "id": 3,
-        "label": "Memories",
-        "icon": "memories.png"
-    },
-    {
-        "id": 4,
-        "label": "Saved",
-        "icon": "saved.png"
-    },
-    {
-        "id": 5,
-        "label": "Groups",
-        "icon": "groups.png"
-    },
-    {
-        "id": 6,
-        "label": "Video",
-        "icon": "video.png"
-    },
-    {
-        "id": 7,
-        "label": "Marketplace",
-        "icon": "marketplace.png"
-    },
-    {
-        "id": 8,
-        "label": "Feeds",
-        "icon": "feeds.png"
-    },
-    {
-        "id": 9,
-        "label": "Events",
-        "icon": "events.png"
-    }
-]
+    { id: 1, label: "Meta AI", icon: metaAi },
+    { id: 2, label: "Friends", icon: friends },
+    { id: 3, label: "Memories", icon: memories },
+    { id: 4, label: "Saved", icon: metaAi },
+    { id: 5, label: "Groups", icon: friends },
+    { id: 6, label: "Video", icon: memories },
+    { id: 7, label: "Marketplace", icon: metaAi },
+    { id: 8, label: "Feeds", icon: memories },
+    { id: 9, label: "Events", icon: metaAi },
+];
+
 type menuInterface = {
     isShown?: boolean
 }
@@ -74,9 +38,9 @@ export default function UserNameWithPicture({isShown = true}: menuInterface) {
                 {
                     menuItems && (menuItems.map((menu: ProfileMenuInterface) => {
                         return (
-                            <div key={menu.id} className="pb-2.5">
+                            <div key={menu.id} className="pb-2.5 flex items-center gap-5">
+                                {<img className="w-[35px]" src={menu.icon}/>}
                                 <span>{menu.label}</span>
-                                {<img src={menu.icon}/>}
                             </div>
                         );
                     }))
