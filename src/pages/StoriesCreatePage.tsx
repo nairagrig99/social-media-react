@@ -6,7 +6,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../Store/store";
 import {UserInterface} from "../Interface/user-interface";
 import {updateUser} from "../Store/userThunk";
-import {PictureBlob} from "../Interface/picture-blob.interface";
 import {useNavigate} from "react-router-dom";
 
 export default function StoriesCreatePage() {
@@ -21,37 +20,53 @@ export default function StoriesCreatePage() {
 
     const shareStory = () => {
 
-        if (photoStories?.length) {
-            dispatch(updateUser({
-                id: selectUser.id,
-                key: 'stories',
-                innerKey: "photoStoryList",
-                photo: photoStories!,
-                createdDate: new Date().toISOString(),
-                photoSettings: {
-                    text: selectText,
-                    song: selectSong!,
-                },
-            })).then(() => {
-                navigate('/feed')
-            })
-        } else {
-            dispatch(updateUser({
-                id: selectUser.id,
-                key: 'stories',
-                innerKey: "textStoryList",
-                text: selectText.text,
-                textSettings: {
-                    song: selectSong!,
-                    text: selectText
-                },
-                createdDate: new Date().toISOString(),
-            })).then(() => {
-                navigate('/feed')
-            })
-        }
-    }
+        const updates: any = {};
 
+        if (photoStories) {
+            updates.photoStoryList = [
+                ...selectUser.stories.photoStoryList,
+                {
+                    photo: photoStories!,
+                    createdDate: new Date().toISOString(),
+                    photoSettings: {
+                        text: selectText,
+                        song: selectSong!,
+                    },
+                }
+            ]
+        }
+
+        if (textStories) {
+            updates.textStoryList = [
+                ...selectUser.stories.textStoryList,
+                {
+                    text: selectText.text,
+                    createdDate: new Date().toISOString(),
+                    textSettings: {
+                        song: selectSong!,
+                        text: selectText
+                    }
+                }
+            ]
+        }
+
+        if (selectUser.stories.photoStoryList.length && !photoStories) {
+            updates.photoStoryList = [...selectUser.stories.photoStoryList]
+        }
+
+        if (selectUser.stories.textStoryList.length && !textStories) {
+            updates.textStoryList = [...selectUser.stories.textStoryList]
+        }
+
+        dispatch(updateUser({
+            id: selectUser.id,
+            key: 'stories',
+            updates
+        })).then(() => {
+            navigate('/feed');
+        })
+
+    }
     return <div>
         <div className="flex w-full">
             <div className="left-side__menu w-100 h-screen">
@@ -77,4 +92,5 @@ export default function StoriesCreatePage() {
 
         </div>
     </div>
+
 }

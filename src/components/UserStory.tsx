@@ -13,7 +13,9 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import MuteSvg from "../UI/MuteSvg";
 import React, {useEffect, useRef, useState} from "react";
-import {StoryCombineModal} from "../Interface/user-interface";
+import {StoryCombineAndModal} from "../Interface/user-interface";
+import useExpiredStories from "../Hooks/useExpiredStories";
+import {updateUser} from "../Store/userThunk";
 
 export default function UserStory() {
     const isOpen = useSelector((state: RootState) => state.modalStory.isOpen);
@@ -22,22 +24,45 @@ export default function UserStory() {
     const audioRef = useRef<HTMLAudioElement[]>([]);
     const [isMute, setIsMute] = useState<boolean>(false)
     const navigate = useNavigate();
-    const [storyList, setStoryList] = useState<StoryCombineModal[]>([])
+    const [storyList, setStoryList] = useState<StoryCombineAndModal[]>([]);
+    const expiredStory = useExpiredStories();
     const handleStoryModal = () => {
         navigate('/stories/create');
-        // dispatch(openStoryModal())
-        // setTimeout(() => {
-        //     console.log("here workkkkkkk")
-        //     fileRef?.current?.click()
-        // })
     }
     useEffect(() => {
-        const combineStories = [
-            ...registeredUser.stories.photoStoryList,
-            ...registeredUser.stories.textStoryList].sort((a, b) => new Date(a.createdDate).getTime() - new Date(b.createdDate).getTime())
-        if (combineStories.length) {
-            // @ts-ignore
-            setStoryList(combineStories);
+        // if (registeredUser) {
+        //     const photoStories = expiredStory(registeredUser?.stories?.photoStoryList);
+        //     const textStories = expiredStory(registeredUser?.stories?.textStoryList);
+        //     if (registeredUser.id && (photoStories || textStories)) {
+        //         console.log("here work time");
+        //         dispatch(updateUser({
+        //             id: registeredUser.id,
+        //             key: 'stories',
+        //             photoStoryList: photoStories,
+        //             textStoryList: textStories
+        //         }))
+        //     }
+        //
+        // }
+    }, [])
+
+    useEffect(() => {
+        if (registeredUser.stories) {
+
+            const combineStories = []
+            if (registeredUser.stories.photoStoryList) {
+                combineStories.push(...registeredUser.stories.photoStoryList)
+            }
+
+            if (registeredUser.stories.textStoryList) {
+                combineStories.push(...registeredUser.stories.textStoryList)
+            }
+
+            combineStories.sort((a, b) => new Date(a.createdDate).getTime() - new Date(b.createdDate).getTime())
+            if (combineStories.length) {
+                // @ts-ignore
+                setStoryList(combineStories);
+            }
         }
     }, [registeredUser]);
 
@@ -50,7 +75,6 @@ export default function UserStory() {
         setIsMute((mute) => !mute)
     }
     const muteVoice = (audio: HTMLAudioElement) => {
-
         if (!audio) return;
 
         if (audio.muted) {
@@ -60,15 +84,13 @@ export default function UserStory() {
             audio.muted = true;
             audio.pause();
         }
-
     }
-
     const slideChange = (swiper: any) => {
         setIsMute(false);
         if (swiper.slides.length - 1 === swiper.activeIndex) {
             setTimeout(() => {
                 dispatch(closeStoryModal())
-            }, 30000);
+            }, 10000);
 
         }
         audioRef.current.forEach((audio) => {
@@ -112,11 +134,13 @@ export default function UserStory() {
                                     <Swiper
                                         modules={[Pagination, Autoplay]}
                                         onInit={() => {
-                                            audioRef.current[0].muted = false;
-                                            audioRef.current[0].play();
+                                            if (audioRef.current.length) {
+                                                audioRef.current[0].muted = false;
+                                                audioRef.current[0].play();
+                                            }
                                         }}
                                         autoplay={{
-                                            delay: 30000,
+                                            delay: 10000,
                                             disableOnInteraction: false,
                                         }}
                                         slidesPerView={1}
@@ -125,7 +149,7 @@ export default function UserStory() {
                                         className="relative overflow-hidden"
                                         onSlideChange={(swiper: any) => slideChange(swiper)}
                                     >
-                                        {storyList && storyList.map((story: StoryCombineModal, index: number) => {
+                                        {storyList && storyList.map((story: StoryCombineAndModal, index: number) => {
                                             return (<SwiperSlide
                                                 style={{
                                                     backgroundColor: story?.textSettings?.text && story?.textSettings?.text?.color ? story?.textSettings?.text?.color : "#FFF",

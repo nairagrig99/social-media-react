@@ -1,18 +1,22 @@
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import {RequestInterface} from "../Interface/request-interface";
-import {Link, Navigate, redirect, useSubmit} from "react-router-dom";
+import {Link, Navigate, redirect, useActionData, useNavigate, useSubmit} from "react-router-dom";
 import {BUTTON_CLASS, INPUT_BLOCK_CLASS, INPUT_CLASS, SIGN_IN_MAIN_CLASS} from "../constants/style.enums";
 import React, {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
-import {RootState} from "../Store/store";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "../Store/store";
+import {UserInterface} from "../Interface/user-interface";
+import {setSignInUser} from "../Store/userSlice";
 
 export default function SignIn() {
 
     const submit = useSubmit();
-
+    const data = useActionData();
     const [error, setError] = useState<string>();
     const [redirect, setRedirect] = useState<boolean>(false);
+    const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
     const users = useSelector((state: RootState) => state.userStore.users);
     const signInUser = useSelector((state: RootState) => state.userStore.signInUser);
 
@@ -20,6 +24,13 @@ export default function SignIn() {
         email: "",
         password: ""
     });
+
+    useEffect(() => {
+        if (data && data.success) {
+            dispatch(setSignInUser(data.loggedUser));
+            navigate("/feed")
+        }
+    }, [data, dispatch]);
 
     useEffect(() => {
         if (signInUser.email) {
@@ -99,15 +110,20 @@ export async function createSignInAction({request}: RequestInterface) {
         const getRegisteredUser = await fetch('http://localhost:3000/users');
         const registeredUserList = await getRegisteredUser.json();
 
-        const loggedUser = registeredUserList.find((user: any) => {
+        const loggedUser = registeredUserList.find((user: UserInterface) => {
             if (user.email === email && user.password === password) {
                 return user;
             }
         });
+
         if (loggedUser) {
-            localStorage.setItem('loggedUser', JSON.stringify(loggedUser))
+
+            return {
+                loggedUser,
+                success: true
+            }
         }
-        return redirect("/feed");
+
     } catch (error) {
         return {
             error: "Network error occurred",

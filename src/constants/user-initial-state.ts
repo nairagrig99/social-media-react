@@ -1,6 +1,5 @@
 import {UserInterface} from "../Interface/user-interface";
 
-
 export const INITIAL_STATE: UserInterface = {
     id: '',
     photo: [],
@@ -19,32 +18,32 @@ export const INITIAL_STATE: UserInterface = {
     city: "",
     stories: {
         photoStoryList: [
-            {
-                photo: "",
-                photoSettings: {
-                    text: "",
-                    fontSize: "",
-                    color: "",
-                },
-                // @ts-ignore
-                createdDate: new Date().toISOString()
-            }
+            // {
+            //     photo: "",
+            //     photoSettings: {
+            //         text: "",
+            //         fontSize: "",
+            //         color: "",
+            //     },
+            //     // @ts-ignore
+            //     createdDate: new Date().toISOString()
+            // }
         ],
         textStoryList: [
-            {
-                text: "",
-                textSettings: {
-                    song: null,
-                    text: {
-                        fontSize: "",
-                        color: "",
-                        positionX: 0,
-                        positionY: 0
-                    }
-                },
-                // @ts-ignore
-                createdDate: new Date().toISOString()
-            }
+            // {
+            //     text: "",
+            //     textSettings: {
+            //         song: null,
+            //         text: {
+            //             fontSize: "",
+            //             color: "",
+            //             positionX: 0,
+            //             positionY: 0
+            //         }
+            //     },
+            //     // @ts-ignore
+            //     createdDate: new Date().toISOString()
+            // }
         ]
     },
     user_share_list: []

@@ -26,7 +26,6 @@ export default function CreatePhotoStory({photoStory}: ChildProps) {
                         initialQuality: 0.8
                     });
 
-
                     const base64String = await new Promise<string>((resolve, reject) => {
                         const reader = new FileReader();
                         reader.onloadend = () => resolve(reader.result as string);
