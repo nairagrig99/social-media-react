@@ -15,7 +15,7 @@ export default function ProtectedRoute({children}: ProtectedRouteProps) {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                if (loggedUser) {
+                if (loggedUser.id !== '') {
                     setIsAuthenticated(true);
                 }
 
@@ -26,7 +26,7 @@ export default function ProtectedRoute({children}: ProtectedRouteProps) {
             }
         };
         checkAuth();
-    }, []);
+    }, [loggedUser]);
 
     if (loading) return <div>Loading...</div>;
     if (!isAuthenticated) return <Navigate to="/auth/sign-in" replace/>;

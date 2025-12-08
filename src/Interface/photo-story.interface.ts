@@ -1,18 +1,15 @@
-
 import {iTunesTrack} from "./itunes-track.interface";
-import {PictureBlob} from "./picture-blob.interface";
 import {TextSettings} from "../Store/TextStorySlice";
+import {StoryCombineModal, StoryPhoto, StoryText} from "./user-interface";
 
 export interface PhotoStory {
-    id: string;
-    key: string;
-    text?:string;
-    innerKey: string;
-    photo?: string;
-    createdDate: string;
-    photoSettings?: PhotoSettings;
-    textSettings?:PhotoSettings
+    id: string,
+    key: string,
+    photoStoryList: StoryPhoto[],
+    textStoryList: StoryText[]
+    // updatedValue: StoryCombineModal
 }
+
 interface PhotoSettings {
     text: TextSettings;
     song: iTunesTrack;

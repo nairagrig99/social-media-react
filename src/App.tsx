@@ -50,12 +50,14 @@ const router = createBrowserRouter([
     {
         path: '/profile',
         element: (
-            <ProtectedRoute>
+            // <ProtectedRoute>
                 <AccountPage/>
-            </ProtectedRoute>
+            // </ProtectedRoute>
         )
     },
-    {path: '/feed', element: <UserFeed/>},
+    {path: '/feed', element:  <ProtectedRoute>
+            <UserFeed/>
+        </ProtectedRoute> },
     {
         path: "/stories/create",
         element: <StoriesCreatePage/>

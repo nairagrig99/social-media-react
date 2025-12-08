@@ -57,4 +57,13 @@ export interface UserStoryModel {
     }[];
 }
 
-export type StoryCombineModal = UserStoryModel["photoStoryList"][number] & UserStoryModel["textStoryList"][number]
+export type StoryCombineAndModal = UserStoryModel["photoStoryList"][number] & UserStoryModel["textStoryList"][number];
+export type StoryCombineOrModal = UserStoryModel["photoStoryList"][number] | UserStoryModel["textStoryList"][number];
+
+export type StoryPhoto = UserStoryModel["photoStoryList"][number];
+export type StoryText = UserStoryModel["textStoryList"][number];
+
+export type StoryCombineModal = {
+    photoStoryList: UserStoryModel["photoStoryList"];
+    textStoryList: UserStoryModel["textStoryList"];
+}

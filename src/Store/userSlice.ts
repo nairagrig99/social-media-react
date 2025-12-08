@@ -27,6 +27,10 @@ const userSlice = createSlice({
             state.signInUser = saved
                 ? (JSON.parse(saved) as UserInterface)
                 : INITIAL_STATE;
+        },
+        setSignInUser: (state, action) => {
+            localStorage.setItem("loggedUser", JSON.stringify(action.payload));
+            state.signInUser = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -46,24 +50,16 @@ const userSlice = createSlice({
             })
             .addCase(updateUser.fulfilled, (state, action) => {
                 const updatedKey = action.meta.arg.key;
-                const updatedInnerKey = action.meta.arg.innerKey;
-
                 if (updatedKey === "stories") {
-                    if (updatedInnerKey === 'photoStoryList' || updatedInnerKey === 'textStoryList') {
-                        state.signInUser = {
-                            ...state.signInUser,
-                            [updatedKey]: {
-                                ...state.signInUser[updatedKey],
-                                [updatedInnerKey]: [
-                                    ...(state.signInUser[updatedKey]?.[updatedInnerKey] || []),
-                                    ...action.payload[updatedKey][updatedInnerKey]
-                                ]
-                            }
-                        };
+                    if (Object.values(action.payload.stories?.photoStoryList).length) {
+                        state.signInUser.stories.photoStoryList = action.payload.stories.photoStoryList;
+                    }
+
+                    if (action.payload.stories?.textStoryList?.length) {
+                        state.signInUser.stories.textStoryList = action.payload.stories.textStoryList;
                     }
                     localStorage.setItem("loggedUser", JSON.stringify(state.signInUser));
                 }
-
             })
             .addCase(updateUser.rejected, (state, action) => {
                 state.status = "rejected";
@@ -71,5 +67,5 @@ const userSlice = createSlice({
             });
     }
 })
-export const {getSignInUser} = userSlice.actions
+export const {getSignInUser, setSignInUser} = userSlice.actions
 export default userSlice.reducer;
