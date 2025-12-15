@@ -34,7 +34,7 @@ export default function RightSideOfStories({photoStory, textStory, discardStory}
     const createTextStory = (data: boolean) => {
         setTextStory(data)
         textStory(data)
-        dispatch(selectTextStoryWithPhoto(true))
+        dispatch(selectTextStoryWithPhoto())
     }
 
     return <div className="flex justify-center gap-5 items-center h-full right-side__content">

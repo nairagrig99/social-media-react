@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "../../Store/store";
 import {selectTextStoryWithPhoto} from "../../Store/songSlice";
@@ -9,7 +9,7 @@ export default function SettingsForPhotoStory() {
     const dispatch = useDispatch<AppDispatch>();
 
     const addTextToPhoto = () => {
-        dispatch(selectTextStoryWithPhoto(true))
+        dispatch(selectTextStoryWithPhoto())
     }
 
     const addMusicToPhoto = () => {

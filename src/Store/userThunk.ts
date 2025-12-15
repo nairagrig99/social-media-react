@@ -19,7 +19,6 @@ export const fetchUser = createAsyncThunk(
 export const updateUser = createAsyncThunk(
     "user/updateUser",
     async (userData: any, thunkAPI) => {
-
         try {
             const response = await fetch(`${URL}/users/${userData.id}`, {
                 method: "PATCH",

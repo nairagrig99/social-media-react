@@ -1,6 +1,6 @@
 import UserStory from "./UserStory";
 import UserFriendsStory from "./UserFriendsStory";
-import UserShare from "./UserShare";
+import UserShare from "./shareThoughts/UserShare";
 import UserFeedAndShares from "./UserFeedAndShares";
 
 

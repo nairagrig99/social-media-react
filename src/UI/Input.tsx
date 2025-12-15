@@ -1,7 +1,17 @@
 import React from "react";
 import {InputPropsInterface} from "../Interface/Input-props.interface";
 
-const Input: React.FC<InputPropsInterface> = ({blockClass, errors, value, labelClass, label, id, onBlur, ...props}) => {
+const Input: React.FC<InputPropsInterface> = ({
+                                                  blockClass,
+                                                  errors,
+                                                  value,
+                                                  labelClass,
+                                                  label,
+                                                  id,
+                                                  onBlur,
+                                                  onClick,
+                                                  ...props
+                                              }) => {
 
     return <div className={blockClass}>
         <label htmlFor={id} className={labelClass}>
@@ -9,6 +19,7 @@ const Input: React.FC<InputPropsInterface> = ({blockClass, errors, value, labelC
                    id={id}
                    {...props}
                    onBlur={onBlur}
+                   onClick={onClick}
             />
             {label}
         </label>
