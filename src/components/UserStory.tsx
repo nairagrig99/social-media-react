@@ -13,7 +13,10 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import MuteSvg from "../UI/MuteSvg";
 import React, {useEffect, useRef, useState} from "react";
-import {StoryCombineAndModal} from "../Interface/user-interface";
+import {
+    StoryCombineAndModal,
+    StoryCombineOrModal,
+} from "../Interface/user-interface";
 import useExpiredStories from "../Hooks/useExpiredStories";
 import {updateUser} from "../Store/userThunk";
 
@@ -26,25 +29,48 @@ export default function UserStory() {
     const navigate = useNavigate();
     const [storyList, setStoryList] = useState<StoryCombineAndModal[]>([]);
     const expiredStory = useExpiredStories();
+
+    const [expiredPhotoStories, setExpiredPhotoStories] = useState<StoryCombineOrModal[]>([]);
+    const [expiredTextStories, setExpiredTextStories] = useState<StoryCombineOrModal[]>([]);
     const handleStoryModal = () => {
         navigate('/stories/create');
     }
+
     useEffect(() => {
-        // if (registeredUser) {
-        //     const photoStories = expiredStory(registeredUser?.stories?.photoStoryList);
-        //     const textStories = expiredStory(registeredUser?.stories?.textStoryList);
-        //     if (registeredUser.id && (photoStories || textStories)) {
-        //         console.log("here work time");
-        //         dispatch(updateUser({
-        //             id: registeredUser.id,
-        //             key: 'stories',
-        //             photoStoryList: photoStories,
-        //             textStoryList: textStories
-        //         }))
-        //     }
-        //
-        // }
-    }, [])
+
+        if (registeredUser && (registeredUser.stories.photoStoryList.length || registeredUser.stories?.textStoryList.length)) {
+            setExpiredPhotoStories(
+                expiredStory(registeredUser.stories?.photoStoryList || [])
+            );
+
+            setExpiredTextStories(
+                expiredStory(registeredUser.stories?.textStoryList || [])
+            );
+            const updates: {
+                photoStoryList: StoryCombineOrModal[];
+                textStoryList: StoryCombineOrModal[];
+            } = {
+                photoStoryList: [],
+                textStoryList: []
+            }
+            if (expiredPhotoStories.length || expiredTextStories.length) {
+
+                if (expiredPhotoStories.length) {
+                    updates.photoStoryList = expiredPhotoStories
+                }
+
+                if (expiredTextStories.length) {
+                    updates.textStoryList = expiredTextStories
+                }
+
+                dispatch(updateUser({
+                    id: registeredUser.id,
+                    key: 'stories',
+                    updates
+                }))
+            }
+        }
+    }, [registeredUser.id, dispatch])
 
     useEffect(() => {
         if (registeredUser.stories) {
@@ -134,7 +160,7 @@ export default function UserStory() {
                                     <Swiper
                                         modules={[Pagination, Autoplay]}
                                         onInit={() => {
-                                            if (audioRef.current.length) {
+                                            if (audioRef.current.length && audioRef.current[0] && audioRef.current[0]?.muted) {
                                                 audioRef.current[0].muted = false;
                                                 audioRef.current[0].play();
                                             }
@@ -187,7 +213,9 @@ export default function UserStory() {
                                                     <>
                                                         <audio
                                                             ref={(el) => {
-                                                                if (el) audioRef.current[index] = el;
+                                                                if (el) {
+                                                                    audioRef.current[index] = el;
+                                                                }
                                                             }}
                                                             controls
                                                             muted

@@ -8,6 +8,7 @@ export interface UserState {
     users: UserInterface[],
     signInUser: UserInterface,
     status: Status;
+    updateStatus: Status;
     error: string | null;
 }
 
@@ -15,6 +16,7 @@ const initialState: UserState = {
     users: [INITIAL_STATE],
     signInUser: INITIAL_STATE,
     status: 'idle',
+    updateStatus: 'idle',
     error: null,
 };
 
@@ -27,6 +29,7 @@ const userSlice = createSlice({
             state.signInUser = saved
                 ? (JSON.parse(saved) as UserInterface)
                 : INITIAL_STATE;
+            state.status = 'succeeded'
         },
         setSignInUser: (state, action) => {
             localStorage.setItem("loggedUser", JSON.stringify(action.payload));
@@ -39,6 +42,7 @@ const userSlice = createSlice({
         })
             .addCase(fetchUser.fulfilled, (state, action) => {
                 state.status = 'succeeded';
+
                 state.users = action.payload;
             })
             .addCase(fetchUser.rejected, (state, action) => {
@@ -46,23 +50,28 @@ const userSlice = createSlice({
                 state.error = action.payload as string;
             })
             .addCase(updateUser.pending, (state) => {
-                state.status = 'loading'
+                state.updateStatus = 'loading'
             })
             .addCase(updateUser.fulfilled, (state, action) => {
                 const updatedKey = action.meta.arg.key;
                 if (updatedKey === "stories") {
                     if (Object.values(action.payload.stories?.photoStoryList).length) {
                         state.signInUser.stories.photoStoryList = action.payload.stories.photoStoryList;
-                    }
-
-                    if (action.payload.stories?.textStoryList?.length) {
+                    } else if (action.payload.stories?.textStoryList?.length) {
                         state.signInUser.stories.textStoryList = action.payload.stories.textStoryList;
+                    } else {
+                        // @ts-ignore
+                        state.signInUser.stories = {
+                            photoStoryList: [],
+                            textStoryList: []
+                        }
                     }
                     localStorage.setItem("loggedUser", JSON.stringify(state.signInUser));
                 }
+                state.updateStatus = "succeeded";
             })
             .addCase(updateUser.rejected, (state, action) => {
-                state.status = "rejected";
+                state.updateStatus = "rejected";
                 state.error = action.payload as string;
             });
     }

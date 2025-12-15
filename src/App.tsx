@@ -51,13 +51,15 @@ const router = createBrowserRouter([
         path: '/profile',
         element: (
             // <ProtectedRoute>
-                <AccountPage/>
+            <AccountPage/>
             // </ProtectedRoute>
         )
     },
-    {path: '/feed', element:  <ProtectedRoute>
+    {
+        path: '/feed', element: <ProtectedRoute>
             <UserFeed/>
-        </ProtectedRoute> },
+        </ProtectedRoute>
+    },
     {
         path: "/stories/create",
         element: <StoriesCreatePage/>
@@ -69,8 +71,8 @@ function App() {
 
     useEffect(() => {
         // @ts-ignore
-        dispatch(fetchUser())
-        dispatch(getSignInUser())
+        dispatch(fetchUser());
+        dispatch(getSignInUser());
     }, []);
 
     return <>
@@ -80,5 +82,4 @@ function App() {
 }
 
 export default App;
-
 

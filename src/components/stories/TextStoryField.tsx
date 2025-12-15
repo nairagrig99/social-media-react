@@ -35,15 +35,20 @@ export default function TextStoryField({input, setInputVisible, isTextStory}: Te
     const audioRef = useRef<HTMLAudioElement>(null);
 
     useEffect(() => {
+        // console.log("selectText", selectText);
+        // console.log("isInputVisible", isInputVisible);
+    }, [selectText]);
+
+    useEffect(() => {
         if (storyText?.trim() !== '') {
-                dispatch(setState({
+            dispatch(setState({
                 ...selectedText,
                 text: storyText,
                 positionX: position.x,
                 positionY: position.y
             }))
         }
-    }, [storyText,position]);
+    }, [storyText, position]);
 
     useEffect(() => {
         if (setInputVisible) {
@@ -127,7 +132,7 @@ export default function TextStoryField({input, setInputVisible, isTextStory}: Te
             </div>
         </div>
 
-        {isInputVisible && selectText &&
+        {(isInputVisible || !storyText?.length) && selectText &&
             <Input name="photoStoryText"
                    style={{
                        fontSize: `${input?.fontSize}px`,

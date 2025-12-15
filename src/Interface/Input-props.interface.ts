@@ -16,4 +16,5 @@ export interface InputPropsInterface {
     labelClass?: string,
     onChange?: (e: React.ChangeEvent<HTMLInputElement>, name?: string, value?: string) => void;
     onBlur?: (e?: React.ChangeEvent<HTMLInputElement>) => void;
+    onClick?: () => void;
 }

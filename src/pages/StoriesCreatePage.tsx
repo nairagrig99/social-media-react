@@ -7,8 +7,9 @@ import {AppDispatch, RootState} from "../Store/store";
 import {UserInterface} from "../Interface/user-interface";
 import {updateUser} from "../Store/userThunk";
 import {useNavigate} from "react-router-dom";
+import Loading from "../components/HOC/Loading";
 
-export default function StoriesCreatePage() {
+export function StoriesCreatePage() {
     const [photoStories, setPhotoStories] = useState<string>()
     const [textStories, setTextStories] = useState<boolean>()
     const [discardStory, setDiscardStory] = useState<boolean>(false);
@@ -19,9 +20,7 @@ export default function StoriesCreatePage() {
     const navigate = useNavigate();
 
     const shareStory = () => {
-
         const updates: any = {};
-
         if (photoStories) {
             updates.photoStoryList = [
                 ...selectUser.stories.photoStoryList,
@@ -65,8 +64,8 @@ export default function StoriesCreatePage() {
         })).then(() => {
             navigate('/feed');
         })
-
     }
+
     return <div>
         <div className="flex w-full">
             <div className="left-side__menu w-100 h-screen">
@@ -93,4 +92,12 @@ export default function StoriesCreatePage() {
         </div>
     </div>
 
+}
+
+const StoriesCreatePageWithLoading = Loading(StoriesCreatePage);
+export default function StoriesCreatePageContainer() {
+
+    const updateUserStory = useSelector((state: RootState) => state.userStore.updateStatus)
+
+    return <StoriesCreatePageWithLoading  status={updateUserStory}/>
 }

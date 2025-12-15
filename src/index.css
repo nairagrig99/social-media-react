@@ -24,3 +24,11 @@ code {
 body:has(.feed) {
     background-color: #9c9797;
 }
+
+#modal.share_modal{
+    background: rgba(255, 255, 255, 0.7);
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+}
