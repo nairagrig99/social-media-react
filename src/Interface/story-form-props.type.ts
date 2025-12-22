@@ -1,7 +1,7 @@
 import {ShareStory} from "./share-story.interface";
 
 export type storyFormProps = {
-    form: ShareStory,
-    setForm: (value: string , type: string) => void,
-    setEmoji?: (emoji:string) => void
+    form: string | string[],
+    setForm: <K extends keyof ShareStory>(key: K, value: ShareStory[K]) => void,
+    disabled?: boolean
 }

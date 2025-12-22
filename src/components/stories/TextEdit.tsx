@@ -12,7 +12,7 @@ export default function TextEdit() {
         setTextStoryField(select)
     }, [select]);
     const setIsInputVisible = () => {
-        // console.log("ssssssssss")
+
     }
 
     return <TextStoryField input={textStoryField} setInputVisible={setIsInputVisible} isTextStory={true}/>

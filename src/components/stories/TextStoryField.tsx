@@ -35,11 +35,6 @@ export default function TextStoryField({input, setInputVisible, isTextStory}: Te
     const audioRef = useRef<HTMLAudioElement>(null);
 
     useEffect(() => {
-        // console.log("selectText", selectText);
-        // console.log("isInputVisible", isInputVisible);
-    }, [selectText]);
-
-    useEffect(() => {
         if (storyText?.trim() !== '') {
             dispatch(setState({
                 ...selectedText,

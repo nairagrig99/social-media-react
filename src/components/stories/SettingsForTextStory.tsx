@@ -13,7 +13,6 @@ export default function SettingsForTextStory() {
     const dispatch = useDispatch<AppDispatch>();
     const {input, handleChange} = useInput();
     const addTextToPhoto = () => {
-        // console.log("click")
         dispatch(selectTextStoryWithPhoto())
     }
 

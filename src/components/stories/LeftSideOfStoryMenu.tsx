@@ -17,7 +17,8 @@ export default function LeftSideOfStoryMenu({photoStory, textStory}: StorySettin
     return <div>
         <div className="flex items-center gap-2 border-b border-solid p-2">
             <Link to="/feed">
-                <CloseSvg/>
+                <CloseSvg onClick={() => {
+                }}/>
             </Link>
             <Link to="/">
                 <FacebookLogo/>

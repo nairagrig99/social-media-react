@@ -4,10 +4,13 @@ import MentionFriend from "./MentionFriend";
 import ShareFeeling from "./ShareFeeling";
 import Location from "./Location";
 import Gif from "./Gig";
+import React from "react";
 
-export default function AddToPost({form, setForm}: storyFormProps) {
+const AddToPost = () => {
+
     return <div className="flex items-center justify-between py-2 border p-2 rounded mb-2">
         <p>Add to your post</p>
+
         <div className="flex">
             <SharePhoto/>
             <MentionFriend/>
@@ -17,3 +20,4 @@ export default function AddToPost({form, setForm}: storyFormProps) {
         </div>
     </div>
 }
+export default AddToPost;

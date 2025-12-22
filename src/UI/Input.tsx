@@ -20,6 +20,7 @@ const Input: React.FC<InputPropsInterface> = ({
                    {...props}
                    onBlur={onBlur}
                    onClick={onClick}
+                   className={props.disabled ? 'opacity-30 cursor-not-allowed' : ''}
             />
             {label}
         </label>
