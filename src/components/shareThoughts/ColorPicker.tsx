@@ -1,35 +1,17 @@
 import Input from "../../UI/Input";
-import EmojiPicker from "emoji-picker-react";
-import {useState} from "react";
+import React from "react";
 import {storyFormProps} from "../../Interface/story-form-props.type";
 
-
-export default function ColorPicker({form, setForm, setEmoji}: storyFormProps) {
-
-
-    const [showPicker, setShowPicker] = useState(false);
-    const onEmojiClick = (emojiObject: any) => {
-        if (setEmoji) {
-            setEmoji(emojiObject.emoji);
-        }
-    };
-
-    return <div className="flex justify-between mb-2">
-        <div>
-
+const ColorPicker = React.memo(({form, setForm,disabled}: storyFormProps) => {
+    return <div>
             <Input name="color"
-                   value={form.bgColor}
-                   onChange={(event) => setForm(event.target.value, 'bgColor')}
+                   disabled={disabled}
+                   value={form as string}
+                   onChange={(event) => setForm('bgColor', event.target.value)}
                    type="color"/>
-            
         </div>
-        <div className="relative text-[22px]">
-            <button onClick={() => setShowPicker(!showPicker)} className="absolute right-0">
-                😊
-            </button>
-            <div className="absolute bottom-0 right-0 bottom-[-457px] z-10">{
-                showPicker && (<EmojiPicker onEmojiClick={onEmojiClick}/>)
-            }</div>
-        </div>
-    </div>
-}
+
+
+})
+
+export default ColorPicker

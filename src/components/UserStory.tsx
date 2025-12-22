@@ -37,15 +37,20 @@ export default function UserStory() {
     }
 
     useEffect(() => {
+        if (registeredUser) {
+            const expiredPhotos = expiredStory(registeredUser.stories?.photoStoryList || []);
+            const expiredTexts = expiredStory(registeredUser.stories?.textStoryList || []);
 
+            if (expiredPhotos.length || expiredTexts.length) {
+                setExpiredPhotoStories(expiredPhotos);
+                setExpiredTextStories(expiredTexts);
+            }
+        }
+    }, [registeredUser.id]);
+
+    useEffect(() => {
         if (registeredUser && (registeredUser.stories.photoStoryList.length || registeredUser.stories?.textStoryList.length)) {
-            setExpiredPhotoStories(
-                expiredStory(registeredUser.stories?.photoStoryList || [])
-            );
 
-            setExpiredTextStories(
-                expiredStory(registeredUser.stories?.textStoryList || [])
-            );
             const updates: {
                 photoStoryList: StoryCombineOrModal[];
                 textStoryList: StoryCombineOrModal[];
@@ -53,6 +58,8 @@ export default function UserStory() {
                 photoStoryList: [],
                 textStoryList: []
             }
+
+
             if (expiredPhotoStories.length || expiredTextStories.length) {
 
                 if (expiredPhotoStories.length) {
@@ -63,14 +70,17 @@ export default function UserStory() {
                     updates.textStoryList = expiredTextStories
                 }
 
-                dispatch(updateUser({
-                    id: registeredUser.id,
-                    key: 'stories',
-                    updates
-                }))
+                if (registeredUser.stories.photoStoryList.length < updates.photoStoryList.length
+                    || registeredUser.stories.photoStoryList.length < updates.textStoryList.length) {
+                    dispatch(updateUser({
+                        id: registeredUser.id,
+                        key: 'stories',
+                        updates
+                    }))
+                }
             }
         }
-    }, [registeredUser.id, dispatch])
+    }, [registeredUser.id, dispatch, expiredPhotoStories, expiredTextStories])
 
     useEffect(() => {
         if (registeredUser.stories) {
@@ -131,6 +141,10 @@ export default function UserStory() {
         }
     }
 
+    const closeModal = () => {
+        dispatch(closeStoryModal())
+    }
+
     return (
         <div className="w-full flex gap-5 h-[150px] rounded-lg border-1 border-solid bg-[#FFF] relative p-2.5">
             <div className="w-32 h-full ">
@@ -151,10 +165,9 @@ export default function UserStory() {
                                 className="fixed inset-0  bg-black bg-opacity-50 flex items-center justify-center z-50">
                                 <div className="bg-white h-[547px] w-[347px] p-6 rounded-lg shadow-lg w-96 relative">
                                     <div
-                                        onClick={() => dispatch(closeStoryModal())}
                                         className="text-[#000] rounded flex justify-end w-full"
                                     >
-                                        <CloseSvg/>
+                                        <CloseSvg onClick={closeModal}/>
                                     </div>
 
                                     <Swiper

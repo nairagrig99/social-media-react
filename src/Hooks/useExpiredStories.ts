@@ -6,7 +6,7 @@ export default function useExpiredStories() {
             const now = Date.now();
             const createdAt = new Date(story.createdDate).getTime();
             const hoursPassed = (now - createdAt) / (1000 * 60 * 60);
-            return hoursPassed >= 24
+            return Math.floor(hoursPassed) >= 24
         });
     }
 }

@@ -2,7 +2,8 @@ import {ModalState} from "../Interface/modal-state";
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState: ModalState = {
-    isOpen: false
+    isOpen: false,
+    isShowShare: false
 }
 
 const modalSlice = createSlice({
@@ -15,11 +16,10 @@ const modalSlice = createSlice({
         closeStoryModal: (state) => {
             state.isOpen = false
         },
-        toggleStoreModal: (state) => {
-            state.isOpen = !state.isOpen
+        toggleShareModal: (state) => {
+            state.isShowShare = !state.isShowShare
         }
     }
 })
-
-export const {openStoryModal, closeStoryModal, toggleStoreModal} = modalSlice.actions;
+export const {openStoryModal, closeStoryModal, toggleShareModal} = modalSlice.actions;
 export default modalSlice.reducer;
