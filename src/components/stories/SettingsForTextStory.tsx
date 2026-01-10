@@ -49,7 +49,7 @@ export default function SettingsForTextStory() {
             </svg>
             Add Music
         </div>
-        {openModal && <SongModal setOpenModal={setOpenModal}/>}
+         <SongModal setOpenModal={setOpenModal} openModal={openModal}/>
     </div>
 }
 

@@ -1,4 +1,5 @@
 import {iTunesTrack} from "./itunes-track.interface";
+import {ShareStory} from "./share-story.interface";
 
 export interface UserInterface {
     id: string,
@@ -17,17 +18,7 @@ export interface UserInterface {
     country: string;
     city: string;
     stories: UserStoryModel,
-    user_share_list: UserShareList[]
-}
-
-export interface UserShareList {
-    share_date: ShareListItem
-}
-
-export interface ShareListItem {
-    text: string,
-    images: string[],
-    video: string[]
+    user_share_list: ShareStory[]
 }
 
 export interface UserStoryModel {

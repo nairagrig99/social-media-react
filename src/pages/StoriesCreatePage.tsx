@@ -94,10 +94,4 @@ export function StoriesCreatePage() {
 
 }
 
-const StoriesCreatePageWithLoading = Loading(StoriesCreatePage);
-export default function StoriesCreatePageContainer() {
-
-    const updateUserStory = useSelector((state: RootState) => state.userStore.updateStatus)
-
-    return <StoriesCreatePageWithLoading  status={updateUserStory}/>
-}
+export default Loading(StoriesCreatePage, {statusProps: (state: RootState) => state.userStore.updateStatus});

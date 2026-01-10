@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import './App.css';
 import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
-import SignIn, {createSignInAction} from "./components/SignIn";
-import SignUp, {createSignUpAction} from "./components/SignUp";
+import SignIn, {createSignInAction} from "./components/Auth/SignIn";
+import SignUp, {createSignUpAction} from "./components/Auth/SignUp";
 import RootLayout from "./pages/RootLayout";
 import AuthenticationPage from "./pages/AuthenticationPage";
 import ErrorPage from "./pages/ErrorPage";
@@ -14,6 +14,7 @@ import {AppDispatch} from "./Store/store";
 import StoriesCreatePage from "./pages/StoriesCreatePage";
 import {fetchUser} from "./Store/userThunk";
 import {getSignInUser} from "./Store/userSlice";
+import {countryThunk, userLocationThunk} from "./Store/countryThunk";
 
 const router = createBrowserRouter([
     {
@@ -70,10 +71,9 @@ function App() {
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
-        // @ts-ignore
         dispatch(fetchUser());
         dispatch(getSignInUser());
-    }, []);
+    }, [dispatch]);
 
     return <>
         <RouterProvider router={router}/>;

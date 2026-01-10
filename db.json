@@ -1,4 +1,165 @@
 {
   "users": [
+    {
+      "id": "d974",
+      "first_name": "Naira",
+      "last_name": "Grigoryan",
+      "email": "nuhjm@gmail.com",
+      "phone": "+3749658745",
+      "password": "Hayk99!@#",
+      "re_password": "Hayk99!@#",
+      "gender": "Female",
+      "birthOfDate": "1965",
+      "country": "Belarus",
+      "city": "Shklow",
+      "stories": {
+        "photoStoryList": [
+          {
+            "photo": "https://i.ibb.co/YFd4n0Tx/1a476ef3c450.jpg",
+            "createdDate": "2026-01-09T09:18:24.148Z",
+            "photoSettings": {
+              "text": {
+                "color": "#FFF",
+                "fontSize": "20",
+                "text": "",
+                "positionX": "",
+                "positionY": ""
+              },
+              "song": null
+            }
+          },
+          {
+            "photo": "https://i.ibb.co/kgfgb4QM/421e817d3d81.png",
+            "createdDate": "2026-01-09T09:23:26.228Z",
+            "photoSettings": {
+              "text": {
+                "color": "#FFF",
+                "fontSize": "20",
+                "text": "",
+                "positionX": "",
+                "positionY": ""
+              },
+              "song": null
+            }
+          },
+          {
+            "photo": "https://i.ibb.co/Q78tLgX1/a7775bc593a8.png",
+            "createdDate": "2026-01-10T08:52:10.101Z",
+            "photoSettings": {
+              "text": {
+                "color": "#FFF",
+                "fontSize": "20",
+                "text": "yeah i finaly did it ",
+                "positionX": 75,
+                "positionY": 439
+              },
+              "song": {
+                "wrapperType": "track",
+                "kind": "song",
+                "artistId": 1474627876,
+                "collectionId": 1760735257,
+                "trackId": 1760735361,
+                "artistName": "Шугар",
+                "collectionName": "BMW - Single",
+                "trackName": "BMW",
+                "collectionCensoredName": "BMW - Single",
+                "trackCensoredName": "BMW",
+                "artistViewUrl": "https://music.apple.com/us/artist/%D1%88%D1%83%D0%B3%D0%B0%D1%80/1474627876?uo=4",
+                "collectionViewUrl": "https://music.apple.com/us/album/bmw/1760735257?i=1760735361&uo=4",
+                "trackViewUrl": "https://music.apple.com/us/album/bmw/1760735257?i=1760735361&uo=4",
+                "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/07/09/27/07092754-ae6c-3ef5-fc81-3d52d390b3de/mzaf_4220474289600662786.plus.aac.p.m4a",
+                "artworkUrl30": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/de/bb/6e/debb6e38-7195-1962-b6dc-60b9d1dbeabf/24UMGIM84620.rgb.jpg/30x30bb.jpg",
+                "artworkUrl60": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/de/bb/6e/debb6e38-7195-1962-b6dc-60b9d1dbeabf/24UMGIM84620.rgb.jpg/60x60bb.jpg",
+                "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/de/bb/6e/debb6e38-7195-1962-b6dc-60b9d1dbeabf/24UMGIM84620.rgb.jpg/100x100bb.jpg",
+                "releaseDate": "2024-08-08T12:00:00Z",
+                "collectionExplicitness": "notExplicit",
+                "trackExplicitness": "notExplicit",
+                "discCount": 1,
+                "discNumber": 1,
+                "trackCount": 1,
+                "trackNumber": 1,
+                "trackTimeMillis": 175752,
+                "country": "USA",
+                "currency": "USD",
+                "primaryGenreName": "Pop",
+                "isStreamable": true
+              }
+            }
+          }
+        ]
+      },
+      "user_share_list": {
+        "2026-01-10T08:44:39.157Z": {
+          "text": "i change this lets see how its work",
+          "feelingEmoji": "",
+          "friends": "",
+          "location": "",
+          "bgColor": "",
+          "images": [
+            "https://i.ibb.co/xt25xN3G/858d485ad2e8.png",
+            "https://i.ibb.co/Q78tLgX1/a7775bc593a8.png"
+          ]
+        },
+        "2026-01-10T08:40:17.942Z": {
+          "text": "",
+          "feelingEmoji": "",
+          "friends": "",
+          "location": "",
+          "bgColor": "",
+          "images": [
+            "https://i.ibb.co/xt25xN3G/858d485ad2e8.png",
+            "https://i.ibb.co/Q78tLgX1/a7775bc593a8.png"
+          ]
+        },
+        "2026-01-10T08:27:18.720Z": {
+          "text": "",
+          "feelingEmoji": "",
+          "friends": "",
+          "location": "",
+          "bgColor": "",
+          "images": [
+            "https://i.ibb.co/Q78tLgX1/a7775bc593a8.png",
+            "https://i.ibb.co/xt25xN3G/858d485ad2e8.png"
+          ]
+        },
+        "2026-01-10T08:11:40.993Z": {
+          "text": "",
+          "feelingEmoji": "",
+          "friends": "",
+          "location": "",
+          "bgColor": "",
+          "images": [
+            "https://i.ibb.co/xt25xN3G/858d485ad2e8.png"
+          ]
+        },
+        "2026-01-09T09:24:42.792Z": {
+          "text": "new one",
+          "feelingEmoji": "",
+          "friends": "",
+          "location": "",
+          "bgColor": "",
+          "images": []
+        },
+        "2026-01-09T09:24:23.787Z": {
+          "text": "this post with images",
+          "feelingEmoji": "",
+          "friends": "",
+          "location": "",
+          "bgColor": "",
+          "images": [
+            "https://i.ibb.co/Cpk31vfr/c5ef9d566c1f.png",
+            "https://i.ibb.co/fY3B017y/667a737f2b35.png"
+          ]
+        },
+        "2026-01-09T09:23:44.563Z": {
+          "text": "this is mypost",
+          "feelingEmoji": "",
+          "friends": "",
+          "location": "",
+          "bgColor": "",
+          "images": []
+        }
+      }
+    }
   ]
 }

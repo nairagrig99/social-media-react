@@ -9,7 +9,7 @@ export default function Header() {
             <Link to="/">
                 <FacebookLogo/>
             </Link>
-            <Search/>
+            {/*<Search/>*/}
             <Link to="/feed">
                 <FeedLogo/>
             </Link>

@@ -1,9 +1,11 @@
 import {ModalState} from "../Interface/modal-state";
 import {createSlice} from "@reduxjs/toolkit";
 
+
 const initialState: ModalState = {
     isOpen: false,
-    isShowShare: false
+    isShowShare: false,
+    content: '',
 }
 
 const modalSlice = createSlice({
@@ -16,9 +18,11 @@ const modalSlice = createSlice({
         closeStoryModal: (state) => {
             state.isOpen = false
         },
-        toggleShareModal: (state) => {
+        toggleShareModal: (state, action) => {
             state.isShowShare = !state.isShowShare
-        }
+            state.content = action.payload
+        },
+
     }
 })
 export const {openStoryModal, closeStoryModal, toggleShareModal} = modalSlice.actions;

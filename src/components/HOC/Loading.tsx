@@ -1,20 +1,22 @@
 import Spinner from "../Spinner";
+import {RootState} from "../../Store/store";
+import {useSelector} from "react-redux";
 
-interface WithLoadingProps {
-    status?: string;
+
+interface WithLoadingPropsState {
+    statusProps?: (state: RootState) => string | any
 }
 
-const Loading = <P extends object>(WrappedComponent: React.ComponentType<P>) => {
+const Loading = <P extends object>(WrappedComponent: React.ComponentType<P>, config: WithLoadingPropsState) => {
 
-    return function WithLoadingComponent(props: P & WithLoadingProps) {
-
-        const {status, ...rest} = props;
-
-        if (status === 'loading') {
+    return function WithLoadingComponent(props: P) {
+        // @ts-ignore
+        const selectStatus = useSelector(config.statusProps);
+        if (selectStatus === 'loading') {
             return <Spinner/>
         }
 
-        return <WrappedComponent {...(rest as P)} />;
+        return <WrappedComponent {...props} />;
     };
 };
 

@@ -42,7 +42,6 @@ const userSlice = createSlice({
         })
             .addCase(fetchUser.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-
                 state.users = action.payload;
             })
             .addCase(fetchUser.rejected, (state, action) => {
@@ -57,17 +56,24 @@ const userSlice = createSlice({
                 if (updatedKey === "stories") {
                     if (Object.values(action.payload.stories?.photoStoryList).length) {
                         state.signInUser.stories.photoStoryList = action.payload.stories.photoStoryList;
-                    } else if (action.payload.stories?.textStoryList?.length) {
+                    }
+
+                    if (action.payload.stories?.textStoryList?.length) {
                         state.signInUser.stories.textStoryList = action.payload.stories.textStoryList;
-                    } else {
-                        // @ts-ignore
+                    }
+                    if (!Object.values(action.payload.stories?.photoStoryList).length && !action.payload.stories?.textStoryList?.length){
                         state.signInUser.stories = {
                             photoStoryList: [],
                             textStoryList: []
                         }
                     }
-                    localStorage.setItem("loggedUser", JSON.stringify(state.signInUser));
+
+
+                } else {
+                    // @ts-ignore
+                    state.signInUser[updatedKey] = action.payload[updatedKey];
                 }
+                localStorage.setItem("loggedUser", JSON.stringify(state.signInUser));
                 state.updateStatus = "succeeded";
             })
             .addCase(updateUser.rejected, (state, action) => {
