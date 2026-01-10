@@ -1,13 +1,13 @@
-import Input from "../UI/Input";
-import Button from "../UI/Button";
-import {RequestInterface} from "../Interface/request-interface";
+import Input from "../../UI/Input";
+import Button from "../../UI/Button";
+import {RequestInterface} from "../../Interface/request-interface";
 import {Link, Navigate, redirect, useActionData, useNavigate, useSubmit} from "react-router-dom";
-import {BUTTON_CLASS, INPUT_BLOCK_CLASS, INPUT_CLASS, SIGN_IN_MAIN_CLASS} from "../constants/style.enums";
+import {BUTTON_CLASS, INPUT_BLOCK_CLASS, INPUT_CLASS, SIGN_IN_MAIN_CLASS} from "../../constants/style.enums";
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "../Store/store";
-import {UserInterface} from "../Interface/user-interface";
-import {setSignInUser} from "../Store/userSlice";
+import {AppDispatch, RootState} from "../../Store/store";
+import {UserInterface} from "../../Interface/user-interface";
+import {setSignInUser} from "../../Store/userSlice";
 
 export default function SignIn() {
 

@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import {AppDispatch} from "../../Store/store";
 import {toggleShareModal} from "../../Store/ModalSlice";
 import {ImageGridProps} from "../../Interface/Image-grid-props.interface";
+import {ComponentModalEnum} from "../../constants/component-modal.enum";
 
 
 const ImageGrid = React.memo(({images}: ImageGridProps) => {
@@ -29,15 +30,15 @@ const ImageGrid = React.memo(({images}: ImageGridProps) => {
                         <img
                             src={src}
                             alt=""
-                            className={`w-full h-full object-cover
+                            className={`w-full h-full  max-h-[440px] object-cover
                               ${images.length > 3 && index === 2 ? 'opacity-40' : ''}
                                 `}
-                            onClick={() => dispatch(toggleShareModal())}
+                            onClick={() => dispatch(toggleShareModal(ComponentModalEnum.IMAGES))}
                         />
 
                         {images.length > 3 && index === 2 && (
                             <span
-                                onClick={() => dispatch(toggleShareModal())}
+                                onClick={() => dispatch(toggleShareModal(ComponentModalEnum.IMAGES))}
                                 className="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold bg-black/30">
                         +{images.length - 3}
                              </span>

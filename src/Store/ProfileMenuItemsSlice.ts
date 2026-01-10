@@ -22,8 +22,7 @@ const profileMenuItemsSlice = createSlice({
             state.status = "succeeded"
         }).addCase(profileMenu.rejected, (state, action) => {
             state.status = "failed";
-            // @ts-ignore
-            state.error = (action.payload ?? action.error.message ?? "Unknown error");
+            // state.error = (action.payload ?? action.error.message ?? "Unknown error");
         })
     }
 })

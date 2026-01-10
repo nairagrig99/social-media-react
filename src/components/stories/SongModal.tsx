@@ -1,4 +1,4 @@
-import Modal from "../Modal";
+import Modal from "../../UI/Modal";
 import CloseSvg from "../../UI/CloseSvg";
 import Input from "../../UI/Input";
 import {StatusEnum} from "../../constants/status.enum";
@@ -8,12 +8,14 @@ import {clearSearch, setSelectedSong} from "../../Store/songSlice";
 import {useEffect, useState} from "react";
 import {searchSongThunk} from "../../Store/songThunk";
 import useDebounce from "../../Hooks/useDebounce";
+import {ErrorEnum} from "../../constants/error.enum";
 
 type SongProps = {
-    setOpenModal: (data: boolean) => void
+    setOpenModal: (data: boolean) => void,
+    openModal:boolean
 }
 
-export default function SongModal({setOpenModal}: SongProps) {
+export default function SongModal({setOpenModal,openModal}: SongProps) {
 
     const songList = useSelector((state: RootState) => state.searchSongSlice.searchSong);
     const searchSong = useSelector((state: RootState) => state.searchSongSlice);
@@ -40,7 +42,7 @@ export default function SongModal({setOpenModal}: SongProps) {
         setOpenModal(false);
     }
 
-    return <Modal className="absolute inset-0 w-full h-full bg-[rgba(255,255,255,0.7)]">
+    return <Modal isOpen={openModal}  className="absolute inset-0 w-full h-full bg-[rgba(255,255,255,0.7)]">
         <div
             className="w-[500px] h-[760px] z-[9999] bg-[#cdc8c8] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-10">
 
@@ -63,7 +65,7 @@ export default function SongModal({setOpenModal}: SongProps) {
                 }
 
                 {searchSong.status === StatusEnum.REJECTED &&
-                    <p>There is something went wrong</p>
+                    <p>{ErrorEnum.FAIL}</p>
                 }
 
                 {searchSong.status === StatusEnum.LOADING &&

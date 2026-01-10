@@ -1,9 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
+import {ErrorEnum} from "../constants/error.enum";
 
 export const URL = `http://localhost:3000`;
 export const fetchUser = createAsyncThunk(
     'user/fetchUser',
-    async (arg: any, thumbApi) => {
+    async (_, thumbApi) => {
         const response = await fetch(`${URL}/users`, {
             method: "GET",
             headers: {"Content-Type": "application/json"},
@@ -16,9 +17,15 @@ export const fetchUser = createAsyncThunk(
         return data || {};
     })
 
+interface UserDataUpdate {
+    id: string,
+    key: string,
+    updates: any
+}
+
 export const updateUser = createAsyncThunk(
     "user/updateUser",
-    async (userData: any, thunkAPI) => {
+    async (userData: UserDataUpdate, thunkAPI) => {
         try {
             const response = await fetch(`${URL}/users/${userData.id}`, {
                 method: "PATCH",
@@ -45,7 +52,7 @@ export const profileMenu = createAsyncThunk(
         try {
             const response = await fetch(`${URL}/menuItems`);
             if (!response.ok) {
-                thunkAPI.rejectWithValue("Something went wrong")
+                thunkAPI.rejectWithValue(ErrorEnum.FAIL)
             }
             return await response.json();
         } catch (err: any) {

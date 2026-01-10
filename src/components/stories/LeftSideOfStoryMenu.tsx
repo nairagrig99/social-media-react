@@ -25,7 +25,7 @@ export default function LeftSideOfStoryMenu({photoStory, textStory}: StorySettin
             </Link>
         </div>
         <div className="p-2 border-b border-solid">
-            <UserNameWithPicture isShown={false} status={isLoading || !!user}/>
+            <UserNameWithPicture isShown={false}/>
         </div>
         <div>
             {photoStory && (<SettingsForPhotoStory/>)}

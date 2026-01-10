@@ -1,12 +1,12 @@
-import Input from "../UI/Input";
-import Button from "../UI/Button";
+import Input from "../../UI/Input";
+import Button from "../../UI/Button";
 import {Link, useSubmit} from "react-router-dom";
-import {BUTTON_CLASS, INPUT_BLOCK_CLASS, INPUT_CLASS, SIGN_IN_MAIN_CLASS} from "../constants/style.enums";
-import Select from "../UI/Select";
+import {BUTTON_CLASS, INPUT_BLOCK_CLASS, INPUT_CLASS, SIGN_IN_MAIN_CLASS} from "../../constants/style.enums";
+import Select from "../../UI/Select";
 import {useEffect, useState} from "react";
-import {Country} from "../Interface/select-interface";
-import {RequestInterface} from "../Interface/request-interface";
-import {useFormValidation} from "../Hooks/useValidation";
+import {Country} from "../../Interface/select-interface";
+import {RequestInterface} from "../../Interface/request-interface";
+import {useFormValidation} from "../../Hooks/useValidation";
 import {redirect} from "react-router-dom";
 
 const initialState = {
