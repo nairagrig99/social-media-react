@@ -40,7 +40,6 @@ export default function UserStory() {
         if (registeredUser) {
             const expiredPhotos = expiredStory(registeredUser.stories?.photoStoryList || []);
             const expiredTexts = expiredStory(registeredUser.stories?.textStoryList || []);
-
             if (expiredPhotos.length || expiredTexts.length) {
                 setExpiredPhotoStories(expiredPhotos);
                 setExpiredTextStories(expiredTexts);
@@ -59,7 +58,6 @@ export default function UserStory() {
                 textStoryList: []
             }
 
-
             if (expiredPhotoStories.length || expiredTextStories.length) {
 
                 if (expiredPhotoStories.length) {
@@ -70,14 +68,13 @@ export default function UserStory() {
                     updates.textStoryList = expiredTextStories
                 }
 
-                if (registeredUser.stories.photoStoryList.length < updates.photoStoryList.length
-                    || registeredUser.stories.photoStoryList.length < updates.textStoryList.length) {
-                    alert()
-                    // dispatch(updateUser({
-                    //     id: registeredUser.id,
-                    //     key: 'stories',
-                    //     updates
-                    // }))
+                if (updates.photoStoryList.length <= registeredUser.stories.photoStoryList.length
+                    || (registeredUser.stories.textStoryList && updates.textStoryList.length <= registeredUser.stories.textStoryList.length)) {
+                    dispatch(updateUser({
+                        id: registeredUser.id,
+                        key: 'stories',
+                        updates
+                    }))
                 }
             }
         }

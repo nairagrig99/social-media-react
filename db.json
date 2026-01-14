@@ -15,8 +15,8 @@
       "stories": {
         "photoStoryList": [
           {
-            "photo": "https://i.ibb.co/YFd4n0Tx/1a476ef3c450.jpg",
-            "createdDate": "2026-01-09T09:18:24.148Z",
+            "photo": "https://i.ibb.co/xq0f4Y7H/9c128e780f0a.jpg",
+            "createdDate": "2026-01-14T06:54:14.132Z",
             "photoSettings": {
               "text": {
                 "color": "#FFF",
@@ -29,8 +29,8 @@
             }
           },
           {
-            "photo": "https://i.ibb.co/kgfgb4QM/421e817d3d81.png",
-            "createdDate": "2026-01-09T09:23:26.228Z",
+            "photo": "https://i.ibb.co/wh1TjF8z/57114df50b17.png",
+            "createdDate": "2026-01-14T06:55:23.307Z",
             "photoSettings": {
               "text": {
                 "color": "#FFF",
@@ -43,46 +43,96 @@
             }
           },
           {
-            "photo": "https://i.ibb.co/Q78tLgX1/a7775bc593a8.png",
-            "createdDate": "2026-01-10T08:52:10.101Z",
+            "photo": "https://i.ibb.co/MDPrYKjH/4129d58b5cb5.png",
+            "createdDate": "2026-01-14T07:57:30.482Z",
             "photoSettings": {
               "text": {
                 "color": "#FFF",
                 "fontSize": "20",
-                "text": "yeah i finaly did it ",
-                "positionX": 75,
-                "positionY": 439
+                "text": "",
+                "positionX": "",
+                "positionY": ""
               },
               "song": {
                 "wrapperType": "track",
                 "kind": "song",
-                "artistId": 1474627876,
-                "collectionId": 1760735257,
-                "trackId": 1760735361,
-                "artistName": "Шугар",
-                "collectionName": "BMW - Single",
-                "trackName": "BMW",
-                "collectionCensoredName": "BMW - Single",
-                "trackCensoredName": "BMW",
-                "artistViewUrl": "https://music.apple.com/us/artist/%D1%88%D1%83%D0%B3%D0%B0%D1%80/1474627876?uo=4",
-                "collectionViewUrl": "https://music.apple.com/us/album/bmw/1760735257?i=1760735361&uo=4",
-                "trackViewUrl": "https://music.apple.com/us/album/bmw/1760735257?i=1760735361&uo=4",
-                "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/07/09/27/07092754-ae6c-3ef5-fc81-3d52d390b3de/mzaf_4220474289600662786.plus.aac.p.m4a",
-                "artworkUrl30": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/de/bb/6e/debb6e38-7195-1962-b6dc-60b9d1dbeabf/24UMGIM84620.rgb.jpg/30x30bb.jpg",
-                "artworkUrl60": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/de/bb/6e/debb6e38-7195-1962-b6dc-60b9d1dbeabf/24UMGIM84620.rgb.jpg/60x60bb.jpg",
-                "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/de/bb/6e/debb6e38-7195-1962-b6dc-60b9d1dbeabf/24UMGIM84620.rgb.jpg/100x100bb.jpg",
-                "releaseDate": "2024-08-08T12:00:00Z",
+                "artistId": 1324137865,
+                "collectionId": 1574966945,
+                "trackId": 1574967276,
+                "artistName": "Trevor Daniel",
+                "collectionName": "Falling - Single",
+                "trackName": "Falling",
+                "collectionCensoredName": "Falling - Single",
+                "trackCensoredName": "Falling",
+                "artistViewUrl": "https://music.apple.com/us/artist/trevor-daniel/1324137865?uo=4",
+                "collectionViewUrl": "https://music.apple.com/us/album/falling/1574966945?i=1574967276&uo=4",
+                "trackViewUrl": "https://music.apple.com/us/album/falling/1574966945?i=1574967276&uo=4",
+                "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/24/48/3a/24483ac4-871e-68e2-3f74-7c6676a62290/mzaf_17224001668991249731.plus.aac.p.m4a",
+                "artworkUrl30": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/fe/66/14/fe66145c-430e-f7a0-e5ce-8e8e5be19c89/888915747841.jpg/30x30bb.jpg",
+                "artworkUrl60": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/fe/66/14/fe66145c-430e-f7a0-e5ce-8e8e5be19c89/888915747841.jpg/60x60bb.jpg",
+                "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/fe/66/14/fe66145c-430e-f7a0-e5ce-8e8e5be19c89/888915747841.jpg/100x100bb.jpg",
+                "collectionPrice": 1.29,
+                "trackPrice": 1.29,
+                "releaseDate": "2018-10-05T12:00:00Z",
                 "collectionExplicitness": "notExplicit",
                 "trackExplicitness": "notExplicit",
                 "discCount": 1,
                 "discNumber": 1,
                 "trackCount": 1,
                 "trackNumber": 1,
-                "trackTimeMillis": 175752,
+                "trackTimeMillis": 159382,
                 "country": "USA",
                 "currency": "USD",
                 "primaryGenreName": "Pop",
                 "isStreamable": true
+              }
+            }
+          }
+        ],
+        "textStoryList": [
+          {
+            "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "createdDate": "2026-01-14T07:56:06.459Z",
+            "textSettings": {
+              "song": {
+                "wrapperType": "track",
+                "kind": "song",
+                "artistId": 940044420,
+                "collectionId": 1465700782,
+                "trackId": 1465700783,
+                "artistName": "Gidayyat & Hovannii",
+                "collectionName": "Сомбреро (Alexei  Shkurko Remix) - Single",
+                "trackName": "Сомбреро (Alexei  Shkurko Remix)",
+                "collectionCensoredName": "Сомбреро (Alexei  Shkurko Remix) - Single",
+                "trackCensoredName": "Сомбреро (Alexei  Shkurko Remix)",
+                "artistViewUrl": "https://music.apple.com/us/artist/gidayyat/940044420?uo=4",
+                "collectionViewUrl": "https://music.apple.com/us/album/%D1%81%D0%BE%D0%BC%D0%B1%D1%80%D0%B5%D1%80%D0%BE-alexei-shkurko-remix/1465700782?i=1465700783&uo=4",
+                "trackViewUrl": "https://music.apple.com/us/album/%D1%81%D0%BE%D0%BC%D0%B1%D1%80%D0%B5%D1%80%D0%BE-alexei-shkurko-remix/1465700782?i=1465700783&uo=4",
+                "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/4d/c2/6e/4dc26e66-f7bb-a741-28e6-df17df35044a/mzaf_4423957931359808968.plus.aac.p.m4a",
+                "artworkUrl30": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/31/61/b2/3161b273-777e-8df8-7776-4aed29fba7bf/cover.jpg/30x30bb.jpg",
+                "artworkUrl60": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/31/61/b2/3161b273-777e-8df8-7776-4aed29fba7bf/cover.jpg/60x60bb.jpg",
+                "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/31/61/b2/3161b273-777e-8df8-7776-4aed29fba7bf/cover.jpg/100x100bb.jpg",
+                "collectionPrice": 1.29,
+                "trackPrice": 1.29,
+                "releaseDate": "2018-07-11T12:00:00Z",
+                "collectionExplicitness": "notExplicit",
+                "trackExplicitness": "notExplicit",
+                "discCount": 1,
+                "discNumber": 1,
+                "trackCount": 1,
+                "trackNumber": 1,
+                "trackTimeMillis": 188944,
+                "country": "USA",
+                "currency": "USD",
+                "primaryGenreName": "Pop",
+                "isStreamable": true
+              },
+              "text": {
+                "color": "#dfaaaa",
+                "fontSize": "13",
+                "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                "positionX": 9,
+                "positionY": 27
               }
             }
           }

@@ -36,8 +36,10 @@ export function StoriesCreatePage() {
         }
 
         if (textStories) {
+            const prevList = Array.isArray(selectUser?.stories?.textStoryList) ? selectUser?.stories?.textStoryList : []
+
             updates.textStoryList = [
-                ...selectUser.stories.textStoryList,
+                ...prevList,
                 {
                     text: selectText.text,
                     createdDate: new Date().toISOString(),
@@ -53,17 +55,20 @@ export function StoriesCreatePage() {
             updates.photoStoryList = [...selectUser.stories.photoStoryList]
         }
 
-        if (selectUser.stories.textStoryList.length && !textStories) {
+        if (selectUser.stories.textStoryList && selectUser.stories.textStoryList.length && !textStories) {
             updates.textStoryList = [...selectUser.stories.textStoryList]
         }
 
-        dispatch(updateUser({
-            id: selectUser.id,
-            key: 'stories',
-            updates
-        })).then(() => {
-            navigate('/feed');
-        })
+        setTimeout(() => {
+            dispatch(updateUser({
+                id: selectUser.id,
+                key: 'stories',
+                updates
+            })).then(() => {
+                navigate('/feed');
+            })
+        }, 1000)
+
     }
 
     return <div>
