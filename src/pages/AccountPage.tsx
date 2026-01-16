@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import Profile from "../components/Profile";
+import Profile from "../components/Profile/Profile";
 import {Outlet} from "react-router-dom";
 
 export default function AccountPage() {

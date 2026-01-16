@@ -16,35 +16,16 @@ export const INITIAL_STATE: UserInterface = {
     birthOfDate: "",
     country: "",
     city: "",
+    cover_photo: {
+        photo: "",
+        settings: {x:0,y:0}
+    },
+    cover_photo_list: [],
+    profile_photo: "",
+    profile_photo_list: [],
     stories: {
-        photoStoryList: [
-            // {
-            //     photo: "",
-            //     photoSettings: {
-            //         text: "",
-            //         fontSize: "",
-            //         color: "",
-            //     },
-            //     // @ts-ignore
-            //     createdDate: new Date().toISOString()
-            // }
-        ],
-        textStoryList: [
-            // {
-            //     text: "",
-            //     textSettings: {
-            //         song: null,
-            //         text: {
-            //             fontSize: "",
-            //             color: "",
-            //             positionX: 0,
-            //             positionY: 0
-            //         }
-            //     },
-            //     // @ts-ignore
-            //     createdDate: new Date().toISOString()
-            // }
-        ]
+        photoStoryList: [],
+        textStoryList: []
     },
     user_share_list: []
 

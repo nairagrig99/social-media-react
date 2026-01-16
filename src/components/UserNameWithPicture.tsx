@@ -22,7 +22,7 @@ const UserNameWithPicture = React.memo(function UserNameWithPicture({isShown = t
 
     return (
         <div className="">
-            <Link to='/profile' className="flex gap-2.5 items-center">
+            <Link to='/Profile' className="flex gap-2.5 items-center">
                 <img src={user.profile_image ? user.profile_image : avatar} alt=""
                      className="w-[40px] border border-solid rounded-full"/>
                 <h3>{user.first_name}</h3>

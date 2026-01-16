@@ -1,29 +1,25 @@
-import {useRef} from "react";
-import useFile from "../../Hooks/useFile";
+import {useEffect, useRef, useState} from "react";
 import useContextHook from "../../Hooks/useContextHook";
+import RenderFile from "../RenderFile";
 
 export default function SharePhoto() {
     const fileRef = useRef<HTMLInputElement>(null);
+    const [file, setFile] = useState<string>()
 
     const context = useContextHook();
     const openPanel = () => {
         fileRef?.current?.click()
     }
 
-    const useFileHook = useFile();
-
-    const fileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        useFileHook.fileChange(event).then((file) => {
-            if (file) {
-                context.handleChange('images', [...context.form.images as string[], file])
-            }
-        })
-    }
+    useEffect(() => {
+        if (file) {
+            context.handleChange('images', [...context.form.images as string[], file])
+        }
+    }, [file]);
 
     return (
         <div onClick={openPanel}>
-            <input ref={fileRef} disabled={!!context.form.bgColor.length} type="file" onChange={fileChange}
-                   className="hidden"/>
+            <RenderFile ref={fileRef} onFileReady={setFile}/>
             <svg width="32"
                  height="32"
                  viewBox="0 0 24 24"
