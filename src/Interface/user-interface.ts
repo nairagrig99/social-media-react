@@ -18,7 +18,17 @@ export interface UserInterface {
     country: string;
     city: string;
     stories: UserStoryModel,
-    user_share_list: ShareStory[]
+    user_share_list: ShareStory[],
+    "cover_photo": {
+        photo: "",
+        settings: {
+            x: 0,
+            y: 0
+        }
+    },
+    "cover_photo_list": string[],
+    "profile_photo": string,
+    "profile_photo_list": string[]
 }
 
 export interface UserStoryModel {
